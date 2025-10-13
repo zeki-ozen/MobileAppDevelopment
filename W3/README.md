@@ -1,6 +1,5 @@
-# React Study Guide - Complete Learning Resource
+# React Study Guide - Learning Resource
 
-Welcome to the **React Study Guide**! This comprehensive learning resource is designed to take you from React beginner to advanced developer. Whether you're completely new to React or looking to solidify your understanding, this guide provides structured learning with practical examples.
 
 ## 📚 Table of Contents
 
