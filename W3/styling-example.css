@@ -1,0 +1,199 @@
+/* CSS Classes for Styling Examples */
+
+.css-classes-container {
+  padding: 20px;
+  border: 2px solid #dee2e6;
+  border-radius: 8px;
+  margin: 10px 0;
+  transition: all 0.3s ease;
+}
+
+.css-classes-container.light {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.css-classes-container.dark {
+  background-color: #343a40;
+  color: #fff;
+}
+
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  margin: 10px 0;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  transform: translateY(-1px);
+}
+
+/* CSS Modules (Simulated) */
+.css-modules-container {
+  padding: 20px;
+  border: 2px solid #28a745;
+  border-radius: 8px;
+  margin: 10px 0;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+.module-card {
+  background: white;
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  border-left: 4px solid #28a745;
+}
+
+.module-card h4 {
+  color: #28a745;
+  margin-top: 0;
+  font-size: 1.3em;
+}
+
+.module-button {
+  background: linear-gradient(45deg, #28a745, #20c997);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.module-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+}
+
+/* Styled Components Container */
+.styled-components-container {
+  padding: 20px;
+  border: 2px solid #6f42c1;
+  border-radius: 8px;
+  margin: 10px 0;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.styled-components-container h3 {
+  margin-top: 0;
+  color: white;
+}
+
+.styled-components-container button {
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* CSS-in-JS Container */
+.css-in-js-container {
+  padding: 20px;
+  border: 2px solid #fd7e14;
+  border-radius: 8px;
+  margin: 10px 0;
+  background: #fff3cd;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .responsive-container {
+    flex-direction: column;
+  }
+  
+  .responsive-card {
+    margin-bottom: 15px;
+  }
+}
+
+/* Animation Keyframes */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Utility Classes */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-in {
+  animation: slideIn 0.3s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Theme Variables */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+  --light-color: #f8f9fa;
+  --dark-color: #343a40;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-color: #0d6efd;
+  --secondary-color: #6c757d;
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+/* Custom Properties Usage */
+.theme-aware {
+  background-color: var(--primary-color);
+  color: var(--text-color, #333);
+  padding: 15px;
+  border-radius: 5px;
+}
