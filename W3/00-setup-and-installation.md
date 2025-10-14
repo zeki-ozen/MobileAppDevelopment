@@ -26,11 +26,11 @@ npm --version
 # Using npx (recommended - no global installation needed)
 npx create-react-app my-app
 
-# Using npm (global installation)
+# Or Using npm (global installation)
 npm install -g create-react-app
 create-react-app my-app
 
-# Using yarn
+# Or Using yarn
 yarn create react-app my-app
 ```
 
@@ -72,22 +72,6 @@ npm run build
 
 This creates an optimized production build in the `build/` folder.
 
-## 0.3 Vite
-
-**Vite** is a modern, fast build tool that provides a better development experience compared to Create React App. It offers instant server start and lightning-fast Hot Module Replacement (HMR).
-
-### Installation
-
-```bash
-# Using npm
-npm create vite@latest my-react-app -- --template react
-
-# Using yarn
-yarn create vite my-react-app --template react
-
-# Using pnpm
-pnpm create vite my-react-app --template react
-```
 
 ### Running the Development Server
 
@@ -105,18 +89,6 @@ The development server will start at `http://localhost:5173`.
 npm run build
 ```
 
-## 0.4 Next.js
-
-**Next.js** is a React framework that provides server-side rendering, static site generation, and many other features out of the box. It's ideal for production-grade applications.
-
-### Installation
-
-```bash
-npx create-next-app@latest my-next-app
-```
-
-Follow the prompts to configure your project (TypeScript, ESLint, etc.).
-
 ### Running the Development Server
 
 ```bash
@@ -126,7 +98,7 @@ npm run dev
 
 The development server will start at `http://localhost:3000`.
 
-## 0.5 Manual Setup (Without Tools)
+## Manual Setup (Without Tools)
 
 For learning purposes or very simple projects, you can set up React manually using CDN links.
 
@@ -156,14 +128,14 @@ For learning purposes or very simple projects, you can set up React manually usi
 
 **Note**: This approach is not recommended for production applications as it's slower and lacks modern tooling benefits.
 
-## 0.6 Recommended Development Tools
+## Recommended Development Tools
 
 *   **VS Code**: A popular code editor with excellent React support.
 *   **React Developer Tools**: Browser extension for debugging React applications (available for Chrome and Firefox).
 *   **ESLint**: A linter tool for identifying and fixing code quality issues.
 *   **Prettier**: A code formatter for consistent code style.
 
-## 0.7 First React Component
+## First React Component
 
 After setting up your project, you can create your first React component:
 
@@ -183,7 +155,7 @@ function App() {
 export default App;
 ```
 
-## 0.8 Development vs Production Builds
+## Development vs Production Builds
 
 Understanding the difference between development and production builds is crucial:
 
@@ -201,7 +173,7 @@ Understanding the difference between development and production builds is crucia
 - **No Source Maps**: Harder to debug but smaller bundle
 - **Better Performance**: Optimized for speed and efficiency
 
-## 0.9 Environment Variables
+## Environment Variables
 
 You can use environment variables to configure your React application for different environments:
 
@@ -235,7 +207,7 @@ function App() {
 
 **Note**: Environment variables must start with `REACT_APP_` to be accessible in your React code.
 
-## 0.10 Deployment Options
+## Deployment Options
 
 There are several ways to deploy your React application:
 
@@ -254,7 +226,7 @@ There are several ways to deploy your React application:
 - **Docker**: Containerize your React app
 - **Kubernetes**: Orchestrate containers at scale
 
-## 0.11 Performance Optimization
+## Performance Optimization
 
 ### Code Splitting
 ```jsx
@@ -284,7 +256,7 @@ npm run build
 npx webpack-bundle-analyzer build/static/js/*.js
 ```
 
-## 0.12 Troubleshooting Common Issues
+## Troubleshooting Common Issues
 
 ### Issue 1: Port Already in Use
 ```bash
@@ -315,3 +287,4 @@ npm run lint
 ```
 
 With your development environment set up, you're ready to start building React applications!
+
