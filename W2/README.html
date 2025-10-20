@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 2 · JavaScript & ES6 Fundamentals</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 2.5rem auto;
+      max-width: 960px;
+      line-height: 1.7;
+      padding: 0 1.25rem 4rem;
+      background: #f8fafc;
+      color: #0f172a;
+    }
+    h1 {
+      font-size: clamp(2.25rem, 3vw, 3rem);
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-size: clamp(1.5rem, 2vw, 2rem);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+    blockquote {
+      border-left: 4px solid #6366f1;
+      padding-left: 1rem;
+      margin: 1.5rem 0;
+      background: rgba(99, 102, 241, 0.08);
+      border-radius: 0 0.75rem 0.75rem 0;
+    }
+    blockquote p {
+      margin: 0.5rem 0;
+    }
+    blockquote strong {
+      display: block;
+      font-size: 1.1rem;
+    }
+    ul {
+      margin: 0.5rem 0 1.5rem 1.25rem;
+    }
+    li {
+      margin: 0.35rem 0;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background: #fff;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 15px 40px -24px rgba(15, 23, 42, 0.45);
+    }
+    thead {
+      background: #312e81;
+      color: #e0e7ff;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.85rem;
+    }
+    th, td {
+      padding: 0.9rem 1.1rem;
+      border-bottom: 1px solid #e2e8f0;
+      vertical-align: top;
+      text-align: left;
+    }
+    tbody tr:nth-child(odd) {
+      background: #f1f5f9;
+    }
+    a {
+      color: #4338ca;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    code {
+      font-family: "Fira Code", "SFMono-Regular", Menlo, Consolas, monospace;
+      background: rgba(15, 23, 42, 0.08);
+      padding: 0.1rem 0.3rem;
+      border-radius: 0.4rem;
+    }
+    pre {
+      background: #0b1120;
+      color: #f8fafc;
+      padding: 1.25rem 1.5rem;
+      border-radius: 0.9rem;
+      overflow-x: auto;
+      margin: 1.75rem 0;
+      box-shadow: 0 24px 50px -28px rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      font-size: 1rem;
+      line-height: 1.65;
+    }
+    pre code {
+      background: transparent;
+      color: inherit;
+      display: block;
+      padding: 0;
+      margin: 0;
+      white-space: pre;
+    }
+    .callout {
+      background: #eef2ff;
+      border-left: 4px solid #4338ca;
+      padding: 0.85rem 1.1rem;
+      border-radius: 0.6rem;
+      font-size: 0.95rem;
+      color: #312e81;
+      margin-top: 0.75rem;
+    }
+    .folder-structure pre {
+      background: #fff;
+      color: #1e293b;
+      border: 1px solid #e2e8f0;
+      box-shadow: none;
+    }
+    footer {
+      margin-top: 3rem;
+      font-size: 0.95rem;
+      text-align: center;
+      color: #334155;
+    }
+    @media (max-width: 720px) {
+      table, thead, tbody, th, td, tr { display: block; }
+      thead { display: none; }
+      tbody tr { margin-bottom: 1rem; border-radius: 0.75rem; overflow: hidden; box-shadow: 0 12px 30px -22px rgba(15, 23, 42, 0.45); }
+      td {
+        border-bottom: 1px solid #e2e8f0;
+        position: relative;
+        padding-left: 55%;
+      }
+      td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 1rem;
+        top: 0.85rem;
+        font-weight: 700;
+        color: #475569;
+        text-transform: uppercase;
+        font-size: 0.75rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Week 2 · JavaScript & ES6 Fundamentals</h1>
+    <blockquote>
+      <p><strong>How to use</strong></p>
+      <p>1. Clone or download the repository.</p>
+      <p>2. Open the <code>topics</code> folder in VS Code.</p>
+      <p>3. Launch each HTML file in a browser (Live Server, Chrome, etc.) or double-click to open it.</p>
+      <p>4. Follow the lesson instructions—including the comprehensive teaching notes and interactive examples—to guide console or terminal exercises.</p>
+      <p>5. All lessons now feature detailed explanations, code examples with high-contrast styling, and practical exercises.</p>
+    </blockquote>
+  </header>
+
+  <main>
+    <section>
+      <h2>📚 Topic Index</h2>
+      <div class="callout">IDs 16, 18, ve 21 bu kohort için bilinçli olarak emekliye ayrılmıştır.</div>
+      <table>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Lesson</th>
+            <th scope="col">Focus</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="ID">00</td>
+            <td data-label="Lesson"><a href="topics/00_Fundamentals_of_JavaScript.html">Fundamentals of JavaScript</a></td>
+            <td data-label="Focus">Language origins, runtime environments, syntax rules, case sensitivity.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">01</td>
+            <td data-label="Lesson"><a href="topics/01_Using_JS_in_HTML.html">Using JavaScript Inside HTML</a></td>
+            <td data-label="Focus">Inline vs. external scripts, <code>defer</code>, and event handler attributes.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">02</td>
+            <td data-label="Lesson"><a href="topics/02_Running_JS_Standalone.html">Running JavaScript Standalone (Browser &amp; Node)</a></td>
+            <td data-label="Focus">Executing scripts in Node.js or the browser console.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">03</td>
+            <td data-label="Lesson"><a href="topics/03_Variables_and_Constants.html">Variables and Constants</a></td>
+            <td data-label="Focus"><code>let</code>, <code>const</code>, hoisting, and the temporal dead zone.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">04</td>
+            <td data-label="Lesson"><a href="topics/04_Data_Types.html">Data Types</a></td>
+            <td data-label="Focus">Primitive vs. reference types, coercion, inspection utilities.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">05</td>
+            <td data-label="Lesson"><a href="topics/05_Operators_and_Expressions.html">Operators and Expressions</a></td>
+            <td data-label="Focus">Arithmetic, comparison, logical, and nullish coalescing operators.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">06</td>
+            <td data-label="Lesson"><a href="topics/06_Control_Flow.html">Control Flow</a></td>
+            <td data-label="Focus"><code>if/else</code>, <code>switch</code>, truthy/falsy values, guard clauses.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">07</td>
+            <td data-label="Lesson"><a href="topics/07_Loops_and_Iteration.html">Loops and Iteration</a></td>
+            <td data-label="Focus"><code>for</code>, <code>while</code>, <code>for...of</code>, <code>forEach</code>, and iteration strategies.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">08</td>
+            <td data-label="Lesson"><a href="topics/08_Functions_and_Arrow_Functions.html">Functions and Arrow Functions</a></td>
+            <td data-label="Focus">Declarations, expressions, arrow functions, pure functions.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">09</td>
+            <td data-label="Lesson"><a href="topics/09_Arrays_and_Iteration_Methods.html">Arrays and Iteration Methods</a></td>
+            <td data-label="Focus"><code>map</code>, <code>filter</code>, <code>reduce</code>, spread/rest, destructuring.</td>
+          </tr>
+          <tr>
+            <td data-label="ID">10</td>
+            <td data-label="Lesson"><a href="topics/10_Modules_and_Imports.html">ES6 Modules and Imports</a></td>
+            <td data-label="Focus">ES module structure, default vs. named exports, dynamic imports.</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section>
+      <h2>🔧 Tools &amp; Tips</h2>
+      <ul>
+        <li>Each lesson opens with a "Teaching Notes" panel summarising key talking points.</li>
+        <li>All examples use modern JavaScript (ES6+) syntax; mention transpilers/build tools if learners need legacy support.</li>
+        <li>Serve module-based lessons such as <code>topics/10_Modules_and_Imports.html</code> via an HTTP server (Live Server, Vite, or <code>npx serve</code>).</li>
+        <li><code>topics/02_standalone.js</code> shows how to share the same code between Node.js and the browser—use it to contrast runtime capabilities.</li>
+        <li>All HTML files now use a centralized <code>styles.css</code> file for consistent styling and better maintainability.</li>
+        <li>Code examples feature high-contrast black backgrounds with white text for optimal readability.</li>
+        <li>Each lesson includes comprehensive examples, detailed explanations, and interactive elements.</li>
+      </ul>
+    </section>
+
+    <section class="folder-structure">
+      <h2>📦 Folder Structure</h2>
+  <pre><code>topics/
+├── 00_Fundamentals_of_JavaScript.html
+├── 00_fundamentals.js
+├── 01_Using_JS_in_HTML.html
+├── 01_using_js_in_html.js
+├── 02_Running_JS_Standalone.html
+├── 02_standalone.js
+├── 03_Variables_and_Constants.html
+├── 03_variables_constants.js
+├── 04_Data_Types.html
+├── 04_data_types.js
+├── 05_Operators_and_Expressions.html
+├── 05_operators.js
+├── 06_Control_Flow.html
+├── 06_control_flow.js
+├── 07_Loops_and_Iteration.html
+├── 07_loops.js
+├── 08_Functions_and_Arrow_Functions.html
+├── 08_functions.js
+├── 09_Arrays_and_Iteration_Methods.html
+├── 09_arrays.js
+├── 10_Modules_and_Imports.html
+├── 10_module_main.js
+├── 10_math_utils.js
+└── styles.css
+      </code></pre>
+    </section>
+  </main>
+
+  <footer>
+    <p>Have fun exploring JavaScript! 🚀</p>
+  </footer>
+</body>
+</html>

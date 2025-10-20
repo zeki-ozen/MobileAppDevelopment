@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Data Types</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>JavaScript Data Types - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li>Primitives: <code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>, <code>symbol</code>, <code>bigint</code>.</li>
+      <li>Reference types: objects, arrays, functions, dates, maps, sets, and user-defined structures.</li>
+      <li>Primitives copy by value. Reference types copy the pointer, so mutations affect all references.</li>
+      <li>Discuss coercion with <code>Number()</code>, <code>String()</code>, JSON serialization, and when to reach for <code>BigInt</code>.</li>
+    </ul>
+    <p>
+      Encourage students to experiment with the inspector below. Try values like <code>Symbol("id")</code>, <code>123n</code>, <code>[1,2,3]</code>, and <code>({ name: "JS" })</code>.
+    </p>
+  </section>
+
+  <section class="data-types-overview">
+    <h2>Overview</h2>
+    <p>
+      JavaScript has seven primitive types (<code>string</code>, <code>number</code>, <code>boolean</code>, <code>null</code>, <code>undefined</code>, <code>symbol</code>, <code>bigint</code>) and complex/reference types such as <code>object</code>, <code>array</code>, <code>function</code>, and <code>date</code>.
+    </p>
+  </section>
+
+  <section class="primitive-types">
+    <h2>Primitive Data Types</h2>
+    <p>Primitive types are immutable and passed by value. They are the most basic data types in JavaScript.</p>
+    
+    <div class="type-section">
+      <h3>1. String</h3>
+      <p>Represents textual data. Can be created with single quotes, double quotes, or backticks.</p>
+      <div class="example">
+        <code>let name = "John";</code><br>
+        <code>let message = 'Hello World';</code><br>
+        <code>let template = `Hello ${name}`;</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>2. Number</h3>
+      <p>Represents both integers and floating-point numbers. JavaScript uses double-precision floating-point format.</p>
+      <div class="example">
+        <code>let age = 25;</code><br>
+        <code>let price = 19.99;</code><br>
+        <code>let scientific = 1.23e4; // 12300</code><br>
+        <code>let infinity = Infinity;</code><br>
+        <code>let notANumber = NaN;</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>3. Boolean</h3>
+      <p>Represents logical values: <code>true</code> or <code>false</code>.</p>
+      <div class="example">
+        <code>let isActive = true;</code><br>
+        <code>let isComplete = false;</code><br>
+        <code>let hasPermission = (user.role === 'admin');</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>4. Null</h3>
+      <p>Represents the intentional absence of any object value. It's a primitive value that represents "nothing".</p>
+      <div class="example">
+        <code>let data = null;</code><br>
+        <code>let user = null; // User not found</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>5. Undefined</h3>
+      <p>Represents a variable that has been declared but not assigned a value.</p>
+      <div class="example">
+        <code>let value; // undefined</code><br>
+        <code>let obj = {};</code><br>
+        <code>console.log(obj.nonExistent); // undefined</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>6. Symbol</h3>
+      <p>Represents a unique identifier. Symbols are immutable and unique.</p>
+      <div class="example">
+        <code>let id = Symbol('id');</code><br>
+        <code>let id2 = Symbol('id');</code><br>
+        <code>console.log(id === id2); // false</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>7. BigInt</h3>
+      <p>Represents integers with arbitrary precision. Created by appending 'n' to the end of an integer.</p>
+      <div class="example">
+        <code>let bigNumber = 123456789012345678901234567890n;</code><br>
+        <code>let anotherBig = BigInt(9007199254740991);</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="reference-types">
+    <h2>Reference Data Types</h2>
+    <p>Reference types are mutable and passed by reference. They are objects that can contain multiple values.</p>
+    
+    <div class="type-section">
+      <h3>1. Object</h3>
+      <p>Collections of key-value pairs. Objects can contain any data type.</p>
+      <div class="example">
+        <code>let person = {</code><br>
+        <code>&nbsp;&nbsp;name: "John",</code><br>
+        <code>&nbsp;&nbsp;age: 30,</code><br>
+        <code>&nbsp;&nbsp;isActive: true</code><br>
+        <code>};</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>2. Array</h3>
+      <p>Ordered lists of values. Arrays are zero-indexed and can contain any data type.</p>
+      <div class="example">
+        <code>let fruits = ["apple", "banana", "orange"];</code><br>
+        <code>let mixed = [1, "hello", true, null];</code><br>
+        <code>let empty = [];</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>3. Function</h3>
+      <p>Reusable blocks of code that can be called with parameters.</p>
+      <div class="example">
+        <code>function greet(name) {</code><br>
+        <code>&nbsp;&nbsp;return `Hello, ${name}!`;</code><br>
+        <code>}</code><br>
+        <code>let arrowFunction = (x) => x * 2;</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>4. Date</h3>
+      <p>Represents a specific moment in time.</p>
+      <div class="example">
+        <code>let now = new Date();</code><br>
+        <code>let specificDate = new Date('2023-12-25');</code><br>
+        <code>let timestamp = new Date(1703520000000);</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="type-coercion">
+    <h2>Type Coercion</h2>
+    <p>JavaScript automatically converts values between different types in certain contexts.</p>
+    
+    <div class="coercion-examples">
+      <h3>Implicit Coercion</h3>
+      <div class="example">
+        <code>console.log("5" + 3); // "53" (string concatenation)</code><br>
+        <code>console.log("5" - 3); // 2 (number subtraction)</code><br>
+        <code>console.log(true + 1); // 2 (boolean to number)</code><br>
+        <code>console.log("" + 0); // "0" (number to string)</code>
+      </div>
+
+      <h3>Explicit Coercion</h3>
+      <div class="example">
+        <code>Number("123"); // 123</code><br>
+        <code>String(456); // "456"</code><br>
+        <code>Boolean(1); // true</code><br>
+        <code>parseInt("123px"); // 123</code><br>
+        <code>parseFloat("3.14"); // 3.14</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="type-checking">
+    <h2>Type Checking</h2>
+    <p>Methods to determine the type of a value in JavaScript.</p>
+    
+    <div class="checking-methods">
+      <h3>typeof Operator</h3>
+      <div class="example">
+        <code>typeof "hello"; // "string"</code><br>
+        <code>typeof 42; // "number"</code><br>
+        <code>typeof true; // "boolean"</code><br>
+        <code>typeof null; // "object" (quirk!)</code><br>
+        <code>typeof undefined; // "undefined"</code><br>
+        <code>typeof Symbol(); // "symbol"</code><br>
+        <code>typeof 123n; // "bigint"</code><br>
+        <code>typeof {}; // "object"</code><br>
+        <code>typeof []; // "object"</code><br>
+        <code>typeof function() {}; // "function"</code>
+      </div>
+
+      <h3>Other Type Checking Methods</h3>
+      <div class="example">
+        <code>Array.isArray([]); // true</code><br>
+        <code>instanceof Date; // true for Date objects</code><br>
+        <code>Object.prototype.toString.call([]); // "[object Array]"</code>
+      </div>
+    </div>
+  </section>
+
+  <label for="valueInput">Enter a value:</label>
+  <input id="valueInput" type="text" placeholder='Try values like 42, true, {"a":1}, or []' />
+
+  <label for="modeSelect">Interpretation Mode</label>
+  <select id="modeSelect">
+    <option value="auto">Auto detect (eval with care)</option>
+    <option value="string">Treat as literal string</option>
+    <option value="json">Parse as JSON</option>
+  </select>
+
+  <button id="inspectButton">Inspect Type</button>
+
+  <div id="results" aria-live="polite"></div>
+
+  <script src="04_data_types.js" defer></script>
+</body>
+</html>

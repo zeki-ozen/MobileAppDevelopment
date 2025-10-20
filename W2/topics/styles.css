@@ -1,0 +1,528 @@
+:root {
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "Fira Code", "SFMono-Regular", Menlo, Consolas, monospace;
+  --color-page: #e2e8f0;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f8fafc;
+  --color-text: #0f172a;
+  --color-text-muted: #475569;
+  --color-border: #e2e8f0;
+  --color-primary: #2563eb;
+  --color-primary-strong: #1d4ed8;
+  --color-primary-soft: #bfdbfe;
+  --shadow-sm: 0 16px 36px -28px rgba(15, 23, 42, 0.35);
+  --shadow-lg: 0 28px 60px -40px rgba(15, 23, 42, 0.42);
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  background: var(--color-page);
+  color-scheme: light;
+}
+
+body {
+  font-family: var(--font-sans);
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-surface-soft);
+  line-height: 1.7;
+  padding: clamp(1.5rem, 2vw + 1rem, 3rem);
+}
+
+body > *:not(script) {
+  max-width: min(72rem, 100%);
+  margin-inline: auto;
+}
+
+main {
+  max-width: 54rem;
+  margin: 0 auto;
+  background: var(--color-surface);
+  padding: clamp(1.8rem, 2vw + 1.4rem, 3rem);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+header > p {
+  margin-bottom: 1rem;
+  color: var(--color-text-muted);
+}
+
+section {
+  margin-top: clamp(1.5rem, 1.2vw + 1.2rem, 2.5rem);
+}
+
+h1 {
+  color: #1e3a8a;
+  font-size: clamp(2.1rem, 2vw + 1.5rem, 2.7rem);
+  margin: 0 0 1.5rem;
+  border-bottom: 3px solid #3b82f6;
+  padding-bottom: 0.6rem;
+}
+
+h2 {
+  color: #1f2937;
+  font-size: clamp(1.5rem, 1.5vw + 1.2rem, 2rem);
+  margin: 0 0 1rem;
+}
+
+h3 {
+  color: #334155;
+  font-size: clamp(1.25rem, 1vw + 1rem, 1.45rem);
+  margin: 1.5rem 0 0.6rem;
+}
+
+p {
+  margin: 0 0 1.1rem;
+  color: var(--color-text-muted);
+}
+
+ul,
+ol {
+  margin: 0 0 1.2rem;
+  padding-left: 1.3rem;
+}
+
+li {
+  margin-bottom: 0.4rem;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.5rem;
+}
+
+dt {
+  font-weight: 700;
+  color: #1f2937;
+}
+
+dd {
+  margin: 0.35rem 0 0;
+  color: var(--color-text-muted);
+}
+
+.pill {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: #e0e7ff;
+  color: #312e81;
+  margin: 0 0.5rem 0.5rem 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+code {
+  background: rgba(15, 23, 42, 0.08);
+  color: #1f2937;
+  padding: 0.2rem 0.45rem;
+  border-radius: 0.4rem;
+  font-family: var(--font-mono);
+  font-size: 0.92rem;
+}
+
+pre {
+  margin: 1.4rem 0;
+}
+
+.code-block,
+.example {
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1.25rem 1.5rem;
+  border-radius: 0.95rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  box-shadow: 0 26px 52px -36px rgba(15, 23, 42, 0.65);
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  overflow-x: auto;
+}
+
+.code-block code,
+.example code {
+  display: block;
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  margin: 0;
+  white-space: pre;
+  font-family: inherit;
+}
+
+.code-block--wrap {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.lesson-notes,
+.variables-overview,
+.variable-types,
+.scope-section,
+.operators-overview,
+.operator-category,
+.control-flow-overview,
+.control-structure,
+.functions-overview,
+.function-type,
+.loops-overview,
+.loop-type,
+.arrays-overview,
+.array-section,
+.modules-overview,
+.module-section,
+.data-types-overview,
+.primitive-types,
+.reference-types,
+.type-section,
+.type-coercion,
+.type-checking,
+.history,
+.panel,
+.practice-section,
+.best-practices,
+.loop-control,
+.precedence-section,
+.scope-examples,
+.advanced-arrays,
+.advanced-concepts,
+.advanced-modules,
+.arithmetic,
+.comparison,
+.logical,
+.assignment,
+.special,
+.if-else,
+.switch,
+.ternary,
+.truthy-falsy,
+.for-loop,
+.while-loop,
+.for-of-loop,
+.for-in-loop,
+.array-basics,
+.array-methods,
+.iteration-methods,
+.function-declaration,
+.function-expression,
+.arrow-functions,
+.import-export,
+.module-basics,
+.module-patterns {
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  padding: clamp(1.3rem, 1vw + 1rem, 2rem);
+  margin-bottom: clamp(1.6rem, 1vw + 1.2rem, 2.5rem);
+  box-shadow: var(--shadow-sm);
+  border-left: 4px solid rgba(148, 163, 184, 0.45);
+}
+
+.lesson-notes {
+  background: #eff6ff;
+  border-left-color: #38bdf8;
+}
+
+.key-points {
+  background: rgba(251, 191, 36, 0.18);
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius-md);
+  margin: 1rem 0;
+  list-style: disc;
+}
+
+.key-points li {
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.data-types-overview,
+.variables-overview,
+.operators-overview,
+.control-flow-overview,
+.functions-overview,
+.loops-overview,
+.arrays-overview,
+.modules-overview {
+  background: #ecfdf5;
+  border-left-color: #22c55e;
+}
+
+.primitive-types,
+.function-declaration,
+.for-loop,
+.array-basics,
+.module-basics,
+.arithmetic,
+.if-else {
+  background: #faf5ff;
+  border-left-color: #a855f7;
+}
+
+.reference-types,
+.function-expression,
+.while-loop,
+.array-methods,
+.import-export,
+.comparison,
+.switch {
+  background: #fff7ed;
+  border-left-color: #f59e0b;
+}
+
+.type-coercion,
+.scope-section,
+.ternary,
+.arrow-functions,
+.iteration-methods,
+.logical,
+.truthy-falsy {
+  background: #fef2f2;
+  border-left-color: #ef4444;
+}
+
+.type-checking,
+.control-structure,
+.for-of-loop,
+.module-patterns,
+.assignment {
+  background: #e0f2fe;
+  border-left-color: #06b6d4;
+}
+
+.advanced-arrays,
+.advanced-concepts,
+.advanced-modules,
+.special,
+.for-in-loop {
+  background: #f0fdf4;
+  border-left-color: #16a34a;
+}
+
+.array-section .example,
+.loop-type .example,
+.function-type .example,
+.module-section .example {
+  margin-top: 1rem;
+}
+
+.type-section {
+  background: #ffffff;
+  border-left-color: rgba(99, 102, 241, 0.65);
+}
+
+.coercion-examples,
+.checking-methods {
+  margin-top: 1rem;
+}
+
+.panel {
+  background: #f0f9ff;
+  border-left-color: #3b82f6;
+}
+
+.history {
+  background: #f0f9ff;
+  border-left-color: #3b82f6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  background: var(--color-surface);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+th,
+td {
+  border: 1px solid var(--color-border);
+  padding: 0.9rem 1.1rem;
+  text-align: left;
+}
+
+th {
+  background: #1d4ed8;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+tr:nth-child(even) {
+  background: rgba(226, 232, 240, 0.6);
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+}
+
+button {
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1.6rem;
+  border-radius: 0.7rem;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: var(--color-primary-strong);
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.35);
+  outline-offset: 3px;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 0.55rem 0.75rem;
+  border-radius: 0.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.6);
+  background: #ffffff;
+  color: var(--color-text);
+}
+
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(37, 99, 235, 0.35);
+  border-color: rgba(37, 99, 235, 0.55);
+}
+
+form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+label {
+  display: grid;
+  gap: 0.4rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+textarea {
+  min-height: 6rem;
+  resize: vertical;
+}
+
+#colorTarget {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  background: #f3f4f6;
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  font-weight: 600;
+}
+
+#scopeOutput,
+#codeOutput {
+  white-space: pre-wrap;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  margin-top: 1rem;
+  font-family: var(--font-mono);
+}
+
+#results,
+#result,
+#output,
+#recommendation {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  border-radius: 0.75rem;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: #fef9c3;
+  color: #1f2937;
+}
+
+#recommendation {
+  background: #ecfdf5;
+}
+
+#results,
+#result {
+  background: #eef2ff;
+}
+
+#output {
+  background: #fef3c7;
+}
+
+pre#output {
+  background: #0f172a;
+  color: #e2e8f0;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
+
+.panel button {
+  margin-top: 0.75rem;
+}
+
+@media (max-width: 720px) {
+  body {
+    padding: 1.25rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  dl {
+    grid-template-columns: 1fr;
+  }
+
+  .lesson-notes,
+  .variables-overview,
+  .variable-types,
+  .scope-section,
+  .operators-overview,
+  .operator-category,
+  .control-flow-overview,
+  .control-structure,
+  .functions-overview,
+  .function-type,
+  .loops-overview,
+  .loop-type,
+  .arrays-overview,
+  .array-section,
+  .modules-overview,
+  .module-section,
+  .data-types-overview,
+  .primitive-types,
+  .reference-types,
+  .type-section,
+  .type-coercion,
+  .type-checking,
+  .history,
+  .panel {
+    padding: 1.1rem 1.2rem;
+  }
+
+  .code-block,
+  .example {
+    font-size: 0.9rem;
+    padding: 1.1rem 1.2rem;
+  }
+}

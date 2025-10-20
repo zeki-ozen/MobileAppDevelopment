@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ES6 Modules and Imports</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>ES6 Modules and Imports - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li>Modules embrace encapsulation—export what you need, hide the rest.</li>
+      <li><code>export default</code> allows a single primary export; named exports support multiple utilities.</li>
+      <li>Always use relative paths (<code>./</code>, <code>../</code>) when importing local files in the browser.</li>
+      <li>Modules run in strict mode automatically and execute once; subsequent imports use the cached module instance.</li>
+    </ul>
+    <p>
+      Show students how bundlers (Vite, Webpack) and Node.js ESM support align with native browser modules.
+    </p>
+  </section>
+
+  <section class="modules-overview">
+    <h2>Overview</h2>
+    <p>ES6 modules provide a standardized way to organize and share code between files. They enable better code organization, dependency management, and tree-shaking for smaller bundle sizes.</p>
+  </section>
+
+  <section class="module-section module-basics">
+    <h2>Module Basics</h2>
+    <p>Understanding how modules work and their key characteristics.</p>
+    
+    <div class="example">
+      <code>// Module characteristics</code><br>
+      <code>// 1. Modules run in strict mode automatically</code><br>
+      <code>// 2. Modules have their own scope (not global)</code><br>
+      <code>// 3. Modules are executed only once</code><br>
+      <code>// 4. Modules can import and export values</code><br><br>
+      <code>// Example: math.js module</code><br>
+      <code>// This would be in a separate file</code><br>
+      <code>export const PI = 3.14159;</code><br>
+      <code>export const E = 2.71828;</code><br><br>
+      <code>export function add(a, b) {</code><br>
+      <code>&nbsp;&nbsp;return a + b;</code><br>
+      <code>}</code><br><br>
+      <code>export function multiply(a, b) {</code><br>
+      <code>&nbsp;&nbsp;return a * b;</code><br>
+      <code>}</code><br><br>
+      <code>// Default export</code><br>
+      <code>export default function calculate(operation, a, b) {</code><br>
+      <code>&nbsp;&nbsp;switch (operation) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;case 'add': return add(a, b);</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;case 'multiply': return multiply(a, b);</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;default: return 0;</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Module Scope and Isolation</h3>
+    <div class="example">
+      <code>// Variables in modules are not global</code><br>
+      <code>let moduleVariable = "I'm in module scope";</code><br>
+      <code>var oldStyleVar = "I'm also in module scope";</code><br><br>
+      <code>// These won't pollute the global scope</code><br>
+      <code>console.log(moduleVariable); // Works within module</code><br>
+      <code>// window.moduleVariable would be undefined</code><br><br>
+      <code>// Functions are also scoped to the module</code><br>
+      <code>function moduleFunction() {</code><br>
+      <code>&nbsp;&nbsp;return "I'm scoped to this module";</code><br>
+      <code>}</code><br><br>
+      <code>// Only exported items are accessible from outside</code><br>
+      <code>export { moduleVariable, moduleFunction };</code>
+    </div>
+  </section>
+
+  <section class="module-section import-export">
+    <h2>Import and Export Syntax</h2>
+    <p>Different ways to import and export values in ES6 modules.</p>
+    
+    <div class="example">
+      <code>// Named exports and imports</code><br>
+      <code>// math.js (exporting file)</code><br>
+      <code>export const PI = 3.14159;</code><br>
+      <code>export function square(x) { return x * x; }</code><br>
+      <code>export function cube(x) { return x * x * x; }</code><br><br>
+      <code>// main.js (importing file)</code><br>
+      <code>import { PI, square, cube } from './math.js';</code><br>
+      <code>console.log(PI); // 3.14159</code><br>
+      <code>console.log(square(5)); // 25</code><br>
+      <code>console.log(cube(3)); // 27</code><br><br>
+      <code>// Import with different names</code><br>
+      <code>import { square as sq, cube as cb } from './math.js';</code><br>
+      <code>console.log(sq(4)); // 16</code><br><br>
+      <code>// Import all named exports</code><br>
+      <code>import * as Math from './math.js';</code><br>
+      <code>console.log(Math.PI); // 3.14159</code><br>
+      <code>console.log(Math.square(6)); // 36</code>
+    </div>
+
+    <h3>Default Exports and Imports</h3>
+    <div class="example">
+      <code>// Default export (only one per module)</code><br>
+      <code>// calculator.js</code><br>
+      <code>class Calculator {</code><br>
+      <code>&nbsp;&nbsp;add(a, b) { return a + b; }</code><br>
+      <code>&nbsp;&nbsp;subtract(a, b) { return a - b; }</code><br>
+      <code>&nbsp;&nbsp;multiply(a, b) { return a * b; }</code><br>
+      <code>&nbsp;&nbsp;divide(a, b) { return b !== 0 ? a / b : 0; }</code><br>
+      <code>}</code><br><br>
+      <code>export default Calculator;</code><br><br>
+      <code>// main.js</code><br>
+      <code>import Calculator from './calculator.js';</code><br>
+      <code>// or with different name</code><br>
+      <code>import Calc from './calculator.js';</code><br><br>
+      <code>const calc = new Calculator();</code><br>
+      <code>console.log(calc.add(5, 3)); // 8</code><br><br>
+      <code>// Mixed imports (default + named)</code><br>
+      <code>// utils.js</code><br>
+      <code>export const VERSION = "1.0.0";</code><br>
+      <code>export function formatDate(date) { return date.toISOString(); }</code><br>
+      <code>export default function logger(message) { console.log(message); }</code><br><br>
+      <code>// main.js</code><br>
+      <code>import logger, { VERSION, formatDate } from './utils.js';</code><br>
+      <code>logger(`App version: ${VERSION}`);</code><br>
+      <code>console.log(formatDate(new Date()));</code>
+    </div>
+
+    <h3>Re-exporting and Aggregating</h3>
+    <div class="example">
+      <code>// Re-exporting from another module</code><br>
+      <code>// math-utils.js</code><br>
+      <code>export { add, subtract } from './basic-math.js';</code><br>
+      <code>export { multiply, divide } from './advanced-math.js';</code><br>
+      <code>export { PI, E } from './constants.js';</code><br><br>
+      <code>// Re-export with renaming</code><br>
+      <code>export { add as plus, subtract as minus } from './basic-math.js';</code><br><br>
+      <code>// Re-export everything</code><br>
+      <code>export * from './basic-math.js';</code><br>
+      <code>export * from './advanced-math.js';</code><br><br>
+      <code>// Re-export default as named</code><br>
+      <code>export { default as Calculator } from './calculator.js';</code><br><br>
+      <code>// Re-export named as default</code><br>
+      <code>export { Calculator as default } from './calculator.js';</code>
+    </div>
+  </section>
+
+  <section class="module-section module-patterns">
+    <h2>Common Module Patterns</h2>
+    <p>Practical patterns for organizing and structuring modules.</p>
+    
+    <div class="example">
+      <code>// Configuration module</code><br>
+      <code>// config.js</code><br>
+      <code>const config = {</code><br>
+      <code>&nbsp;&nbsp;apiUrl: process.env.API_URL || 'https://api.example.com',</code><br>
+      <code>&nbsp;&nbsp;timeout: 5000,</code><br>
+      <code>&nbsp;&nbsp;retries: 3,</code><br>
+      <code>&nbsp;&nbsp;debug: process.env.NODE_ENV === 'development'</code><br>
+      <code>};</code><br><br>
+      <code>export default config;</code><br><br>
+      <code>// Utility module with multiple exports</code><br>
+      <code>// string-utils.js</code><br>
+      <code>export function capitalize(str) {</code><br>
+      <code>&nbsp;&nbsp;return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();</code><br>
+      <code>}</code><br><br>
+      <code>export function truncate(str, length) {</code><br>
+      <code>&nbsp;&nbsp;return str.length > length ? str.slice(0, length) + '...' : str;</code><br>
+      <code>}</code><br><br>
+      <code>export function slugify(str) {</code><br>
+      <code>&nbsp;&nbsp;return str.toLowerCase().replace(/\\s+/g, '-').replace(/[^\\w-]/g, '');</code><br>
+      <code>}</code><br><br>
+      <code>// Data module</code><br>
+      <code>// users.js</code><br>
+      <code>let users = [</code><br>
+      <code>&nbsp;&nbsp;{ id: 1, name: 'John', email: 'john@example.com' },</code><br>
+      <code>&nbsp;&nbsp;{ id: 2, name: 'Jane', email: 'jane@example.com' }</code><br>
+      <code>];</code><br><br>
+      <code>export function getUsers() { return [...users]; }</code><br>
+      <code>export function addUser(user) { users.push({ ...user, id: Date.now() }); }</code><br>
+      <code>export function findUser(id) { return users.find(u => u.id === id); }</code>
+    </div>
+
+    <h3>Class-based Modules</h3>
+    <div class="example">
+      <code>// api-client.js</code><br>
+      <code>class ApiClient {</code><br>
+      <code>&nbsp;&nbsp;constructor(baseUrl, options = {}) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;this.baseUrl = baseUrl;</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;this.timeout = options.timeout || 5000;</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;this.headers = options.headers || {};</code><br>
+      <code>&nbsp;&nbsp;}</code><br><br>
+      <code>&nbsp;&nbsp;async request(endpoint, options = {}) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;const url = `${this.baseUrl}${endpoint}`;</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;const config = {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...options,</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;headers: { ...this.headers, ...options.headers }</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;};</code><br><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;const response = await fetch(url, config);</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;return response.json();</code><br>
+      <code>&nbsp;&nbsp;}</code><br><br>
+      <code>&nbsp;&nbsp;get(endpoint) { return this.request(endpoint); }</code><br>
+      <code>&nbsp;&nbsp;post(endpoint, data) { return this.request(endpoint, { method: 'POST', body: JSON.stringify(data) }); }</code><br>
+      <code>}</code><br><br>
+      <code>export default ApiClient;</code><br><br>
+      <code>// main.js</code><br>
+      <code>import ApiClient from './api-client.js';</code><br><br>
+      <code>const api = new ApiClient('https://api.example.com', {</code><br>
+      <code>&nbsp;&nbsp;timeout: 10000,</code><br>
+      <code>&nbsp;&nbsp;headers: { 'Authorization': 'Bearer token123' }</code><br>
+      <code>});</code><br><br>
+      <code>// Usage</code><br>
+      <code>const users = await api.get('/users');</code><br>
+      <code>const newUser = await api.post('/users', { name: 'Alice', email: 'alice@example.com' });</code>
+    </div>
+  </section>
+
+  <section class="module-section advanced-modules">
+    <h2>Advanced Module Concepts</h2>
+    <p>Dynamic imports, module loading, and advanced patterns.</p>
+    
+    <div class="example">
+      <code>// Dynamic imports (code splitting)</code><br>
+      <code>async function loadModule() {</code><br>
+      <code>&nbsp;&nbsp;try {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;// Dynamic import returns a Promise</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;const module = await import('./heavy-module.js');</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log('Module loaded:', module.default);</code><br><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;// Use the module</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;const result = module.default.calculate(5, 3);</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;return result;</code><br>
+      <code>&nbsp;&nbsp;} catch (error) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.error('Failed to load module:', error);</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>}</code><br><br>
+      <code>// Conditional loading</code><br>
+      <code>async function loadFeature(featureName) {</code><br>
+      <code>&nbsp;&nbsp;switch (featureName) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;case 'chart':</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const { Chart } = await import('./chart-module.js');</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Chart();</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;case 'table':</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const { Table } = await import('./table-module.js');</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return new Table();</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;default:</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;throw new Error('Unknown feature');</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Module Bundling and Tree Shaking</h3>
+    <div class="example">
+      <code>// Tree shaking example</code><br>
+      <code>// math-library.js</code><br>
+      <code>export function add(a, b) { return a + b; }</code><br>
+      <code>export function subtract(a, b) { return a - b; }</code><br>
+      <code>export function multiply(a, b) { return a * b; }</code><br>
+      <code>export function divide(a, b) { return b !== 0 ? a / b : 0; }</code><br>
+      <code>export function power(a, b) { return Math.pow(a, b); }</code><br>
+      <code>export function sqrt(x) { return Math.sqrt(x); }</code><br><br>
+      <code>// main.js - only imports what it uses</code><br>
+      <code>import { add, multiply } from './math-library.js';</code><br><br>
+      <code>// Bundler will only include add() and multiply()</code><br>
+      <code>// subtract, divide, power, sqrt will be "shaken out"</code><br>
+      <code>console.log(add(5, 3)); // 8</code><br>
+      <code>console.log(multiply(4, 6)); // 24</code><br><br>
+      <code>// Side effects in modules</code><br>
+      <code>// side-effects.js</code><br>
+      <code>console.log('This runs when module is imported');</code><br>
+      <code>export const value = 42;</code><br><br>
+      <code>// To prevent side effects from being removed</code><br>
+      <code>// side-effects.js</code><br>
+      <code>import './side-effects.js'; // Import for side effects only</code>
+    </div>
+
+    <h3>Module Best Practices</h3>
+    <div class="example">
+      <code>// ✅ Good: Single responsibility</code><br>
+      <code>// user-service.js - handles user operations</code><br>
+      <code>export class UserService {</code><br>
+      <code>&nbsp;&nbsp;constructor(apiClient) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;this.api = apiClient;</code><br>
+      <code>&nbsp;&nbsp;}</code><br><br>
+      <code>&nbsp;&nbsp;async getUsers() { return this.api.get('/users'); }</code><br>
+      <code>&nbsp;&nbsp;async createUser(userData) { return this.api.post('/users', userData); }</code><br>
+      <code>}</code><br><br>
+      <code>// ❌ Bad: Mixed responsibilities</code><br>
+      <code>// utils.js - too many different things</code><br>
+      <code>export function formatDate() { /* ... */ }</code><br>
+      <code>export function validateEmail() { /* ... */ }</code><br>
+      <code>export function calculateTax() { /* ... */ }</code><br>
+      <code>export function generateId() { /* ... */ }</code><br><br>
+      <code>// ✅ Better: Split into focused modules</code><br>
+      <code>// date-utils.js</code><br>
+      <code>export function formatDate() { /* ... */ }</code><br><br>
+      <code>// validation-utils.js</code><br>
+      <code>export function validateEmail() { /* ... */ }</code><br><br>
+      <code>// tax-calculator.js</code><br>
+      <code>export function calculateTax() { /* ... */ }</code><br><br>
+      <code>// id-generator.js</code><br>
+      <code>export function generateId() { /* ... */ }</code>
+    </div>
+  </section>
+
+  <form id="mathForm">
+    <label>
+      Principal
+      <input id="principal" type="number" value="10000" />
+    </label>
+    <label>
+      Rate (annual %)
+      <input id="rate" type="number" value="15" />
+    </label>
+    <label>
+      Years
+      <input id="years" type="number" value="3" />
+    </label>
+    <button type="submit">Calculate Growth</button>
+  </form>
+
+  <section id="output"></section>
+
+  <script type="module" src="10_module_main.js"></script>
+</body>
+</html>

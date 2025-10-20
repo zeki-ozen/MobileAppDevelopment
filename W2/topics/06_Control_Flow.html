@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Control Flow</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Control Flow: Conditionals - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li>Use <code>if</code>/<code>else</code> for complex conditions or when you need boolean expressions.</li>
+      <li><code>switch</code> shines when comparing the same value against many options.</li>
+      <li>Truthy/falsy values: <code>false</code>, <code>0</code>, <code>""</code>, <code>null</code>, <code>undefined</code>, <code>NaN</code> are falsy; everything else is truthy.</li>
+      <li>Guard clauses (early returns) can simplify deeply nested conditionals.</li>
+    </ul>
+    <p>
+      Discuss practical examples: feature flags, user roles, and validation logic. Encourage flowcharts before coding complex branching.
+    </p>
+  </section>
+
+  <section class="control-flow-overview">
+    <h2>Overview</h2>
+    <p>Control flow determines the order in which statements are executed. Conditional statements allow your program to make decisions and execute different code paths based on conditions.</p>
+  </section>
+
+  <section class="control-structure if-else">
+    <h2>if/else Statements</h2>
+    <p>The most fundamental conditional structure for decision-making in JavaScript.</p>
+    
+    <div class="example">
+      <code>// Basic if statement</code><br>
+      <code>let age = 20;</code><br>
+      <code>if (age >= 18) {</code><br>
+      <code>&nbsp;&nbsp;console.log("You are an adult");</code><br>
+      <code>}</code><br><br>
+      <code>// if/else statement</code><br>
+      <code>if (age >= 18) {</code><br>
+      <code>&nbsp;&nbsp;console.log("You can vote");</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("You cannot vote yet");</code><br>
+      <code>}</code><br><br>
+      <code>// if/else if/else chain</code><br>
+      <code>let score = 85;</code><br>
+      <code>if (score >= 90) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Grade: A");</code><br>
+      <code>} else if (score >= 80) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Grade: B");</code><br>
+      <code>} else if (score >= 70) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Grade: C");</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("Grade: F");</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Nested Conditions</h3>
+    <div class="example">
+      <code>// Nested if statements</code><br>
+      <code>let user = { age: 25, hasLicense: true };</code><br>
+      <code>if (user.age >= 18) {</code><br>
+      <code>&nbsp;&nbsp;if (user.hasLicense) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("You can drive");</code><br>
+      <code>&nbsp;&nbsp;} else {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("You need a license to drive");</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("You are too young to drive");</code><br>
+      <code>}</code><br><br>
+      <code>// Better: Guard clauses</code><br>
+      <code>if (user.age < 18) {</code><br>
+      <code>&nbsp;&nbsp;console.log("You are too young to drive");</code><br>
+      <code>&nbsp;&nbsp;return;</code><br>
+      <code>}</code><br><br>
+      <code>if (!user.hasLicense) {</code><br>
+      <code>&nbsp;&nbsp;console.log("You need a license to drive");</code><br>
+      <code>&nbsp;&nbsp;return;</code><br>
+      <code>}</code><br><br>
+      <code>console.log("You can drive");</code>
+    </div>
+  </section>
+
+  <section class="control-structure switch">
+    <h2>switch Statements</h2>
+    <p>Useful when comparing the same value against multiple possible values.</p>
+    
+    <div class="example">
+      <code>// Basic switch statement</code><br>
+      <code>let day = "Monday";</code><br>
+      <code>switch (day) {</code><br>
+      <code>&nbsp;&nbsp;case "Monday":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Start of work week");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "Tuesday":</code><br>
+      <code>&nbsp;&nbsp;case "Wednesday":</code><br>
+      <code>&nbsp;&nbsp;case "Thursday":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Mid week");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "Friday":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("TGIF!");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "Saturday":</code><br>
+      <code>&nbsp;&nbsp;case "Sunday":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Weekend!");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;default:</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Invalid day");</code><br>
+      <code>}</code><br><br>
+      <code>// Switch with expressions</code><br>
+      <code>let grade = "B";</code><br>
+      <code>switch (grade) {</code><br>
+      <code>&nbsp;&nbsp;case "A":</code><br>
+      <code>&nbsp;&nbsp;case "B":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Passing grade");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "C":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Barely passing");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "D":</code><br>
+      <code>&nbsp;&nbsp;case "F":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Failing grade");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;default:</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Invalid grade");</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Switch vs if/else</h3>
+    <div class="example">
+      <code>// When to use switch</code><br>
+      <code>let userRole = "admin";</code><br>
+      <code>switch (userRole) {</code><br>
+      <code>&nbsp;&nbsp;case "admin":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Full access");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "moderator":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Limited access");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;case "user":</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Basic access");</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;break;</code><br>
+      <code>&nbsp;&nbsp;default:</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("No access");</code><br>
+      <code>}</code><br><br>
+      <code>// When to use if/else</code><br>
+      <code>let temperature = 25;</code><br>
+      <code>if (temperature > 30) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Hot weather");</code><br>
+      <code>} else if (temperature > 20) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Warm weather");</code><br>
+      <code>} else if (temperature > 10) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Cool weather");</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("Cold weather");</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <section class="control-structure ternary">
+    <h2>Ternary Operator</h2>
+    <p>A concise way to write simple conditional expressions.</p>
+    
+    <div class="example">
+      <code>// Basic ternary operator</code><br>
+      <code>let age = 20;</code><br>
+      <code>let status = age >= 18 ? "adult" : "minor";</code><br>
+      <code>console.log(status); // "adult"</code><br><br>
+      <code>// Ternary for simple assignments</code><br>
+      <code>let score = 85;</code><br>
+      <code>let message = score >= 70 ? "Pass" : "Fail";</code><br><br>
+      <code>// Ternary with function calls</code><br>
+      <code>let isLoggedIn = true;</code><br>
+      <code>let greeting = isLoggedIn ? "Welcome back!" : "Please log in";</code><br><br>
+      <code>// Nested ternary (use sparingly)</code><br>
+      <code>let grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "F";</code><br><br>
+      <code>// Ternary vs if/else</code><br>
+      <code>// Ternary (good for simple cases)</code><br>
+      <code>let discount = isMember ? 0.1 : 0;</code><br><br>
+      <code>// if/else (better for complex logic)</code><br>
+      <code>let discount;</code><br>
+      <code>if (isMember && purchaseAmount > 100) {</code><br>
+      <code>&nbsp;&nbsp;discount = 0.15;</code><br>
+      <code>} else if (isMember) {</code><br>
+      <code>&nbsp;&nbsp;discount = 0.1;</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;discount = 0;</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <section class="control-structure truthy-falsy">
+    <h2>Truthy and Falsy Values</h2>
+    <p>Understanding truthy/falsy values is crucial for writing effective conditionals.</p>
+    
+    <div class="example">
+      <code>// Falsy values (all evaluate to false)</code><br>
+      <code>console.log(Boolean(false)); // false</code><br>
+      <code>console.log(Boolean(0)); // false</code><br>
+      <code>console.log(Boolean(-0)); // false</code><br>
+      <code>console.log(Boolean(0n)); // false (BigInt)</code><br>
+      <code>console.log(Boolean("")); // false (empty string)</code><br>
+      <code>console.log(Boolean(null)); // false</code><br>
+      <code>console.log(Boolean(undefined)); // false</code><br>
+      <code>console.log(Boolean(NaN)); // false</code><br><br>
+      <code>// Everything else is truthy</code><br>
+      <code>console.log(Boolean(true)); // true</code><br>
+      <code>console.log(Boolean(1)); // true</code><br>
+      <code>console.log(Boolean(-1)); // true</code><br>
+      <code>console.log(Boolean("hello")); // true</code><br>
+      <code>console.log(Boolean("0")); // true (string)</code><br>
+      <code>console.log(Boolean("false")); // true (string)</code><br>
+      <code>console.log(Boolean([])); // true (empty array)</code><br>
+      <code>console.log(Boolean({})); // true (empty object)</code><br><br>
+      <code>// Practical examples</code><br>
+      <code>let name = "";</code><br>
+      <code>if (name) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Hello, " + name);</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("Please enter your name");</code><br>
+      <code>}</code><br><br>
+      <code>let user = null;</code><br>
+      <code>if (user) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Welcome, " + user.name);</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("Please log in");</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Common Pitfalls</h3>
+    <div class="example">
+      <code>// Be careful with these!</code><br>
+      <code>let count = 0;</code><br>
+      <code>if (count) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Count is truthy"); // Won't execute</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("Count is falsy"); // This will execute</code><br>
+      <code>}</code><br><br>
+      <code>// Better approach for numbers</code><br>
+      <code>if (count > 0) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Count is positive");</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;console.log("Count is zero or negative");</code><br>
+      <code>}</code><br><br>
+      <code>// Check for existence vs truthiness</code><br>
+      <code>let value = 0;</code><br>
+      <code>if (value !== undefined && value !== null) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Value exists:", value);</code><br>
+      <code>}</code><br><br>
+      <code>// Or use nullish coalescing</code><br>
+      <code>let displayValue = value ?? "No value";</code>
+    </div>
+  </section>
+
+  <label>
+    Weather condition
+    <select id="weatherSelect">
+      <option value="sunny">Sunny</option>
+      <option value="rainy">Rainy</option>
+      <option value="windy">Windy</option>
+      <option value="snowy">Snowy</option>
+    </select>
+  </label>
+  <button id="suggest">Suggest Outfit</button>
+
+  <div id="recommendation" aria-live="polite"></div>
+
+  <script src="06_control_flow.js" defer></script>
+</body>
+</html>

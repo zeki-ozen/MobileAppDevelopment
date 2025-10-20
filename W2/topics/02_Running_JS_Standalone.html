@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Running JavaScript Standalone</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Running JavaScript Standalone</h1>
+  <section class="lesson-notes">
+    <h2>Quick Teaching Notes</h2>
+    <ul class="key-points">
+      <li>JavaScript isn&apos;t limited to browsers—Node.js, Deno, and Bun let you run JS on the command line.</li>
+      <li>Browsers provide developer tools; open the console (⌥⌘I on macOS, F12 on Windows) to execute snippets interactively.</li>
+    <li>Standalone scripts are perfect for automation, prototyping, unit tests, and build tooling.</li>
+    <li>Chrome blocks pasted scripts by default; type <code>allow pasting</code> in the console once per session to lift the restriction.</li>
+      <li>ES modules work in Node.js via <code>type="module"</code> packages or the <code>.mjs</code> extension. CommonJS uses <code>require</code>.</li>
+    </ul>
+  </section>
+  <p>
+    JavaScript can run outside of HTML. You can execute scripts directly in a browser console or by using Node.js in a terminal.
+  </p>
+
+  <h2>Run in Your Terminal</h2>
+  <ol>
+    <li>Install Node.js from <a href="https://nodejs.org" target="_blank" rel="noreferrer">nodejs.org</a>.</li>
+    <li>Open a terminal.</li>
+    <li>
+      Navigate to the <code>topics</code> folder and run <code>node 02_standalone.js</code>.<br />
+      Tip: If you stay in the project root, run <code>node topics/02_standalone.js</code> instead.
+    </li>
+  </ol>
+  <p>You should see console output similar to:</p>
+  <pre class="code-block"><code>$ node 02_standalone.js
+Hello from Node.js!
+Current time: 2025-10-06T12:00:00.000Z
+Sum (2 + 3): 5
+  </code></pre>
+
+  <h2>Browser Console Snippet</h2>
+  <p>
+    Open any web page, launch the developer tools console, and paste the following snippet:
+  </p>
+  <div class="reference-card">
+    <strong>Chrome users:</strong> Güvenlik nedeniyle DevTools konsolu yapıştırmayı engeller. Konsola önce <code>allow pasting</code> yazıp Enter'a basın. Komutu girdikten sonra, aynı sekmede oturum boyunca kopyaladığınız kodları doğrudan yapıştırabilirsiniz.
+  </div>
+  <pre class="code-block"><code>console.log("Hello from the browser console!");
+alert("This runs without modifying the page");
+  </code></pre>
+
+  <script src="02_standalone.js"></script>
+  <p>
+    The script tag at the bottom allows you to reuse the same file both in Node.js and in the browser. It writes friendly instructions to the page using feature detection so you can observe the difference.
+  </p>
+</body>
+</html>

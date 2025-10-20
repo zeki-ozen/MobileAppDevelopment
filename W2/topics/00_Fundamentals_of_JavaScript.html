@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JavaScript Fundamentals Overview</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Fundamentals of JavaScript</h1>
+      <p>
+        JavaScript (JS) is a high-level, interpreted programming language created by Brendan Eich in 1995 while working at Netscape. Originally designed to add interactivity to web pages, it has evolved into a full ecosystem used for web, mobile, desktop, and server-side applications.
+      </p>
+      <p>
+        The language is standardized by the ECMA International committee TC39 and published as the ECMAScript specification. Modern JavaScript engines (V8, SpiderMonkey, JavaScriptCore, Chakra) power browsers, Node.js, Deno, Bun, and many other runtimes.
+      </p>
+    </header>
+
+    <section>
+      <h2>Where JavaScript Runs</h2>
+      <div>
+        <span class="pill">Web Browsers (client-side)</span>
+        <span class="pill">Node.js (server-side)</span>
+        <span class="pill">Mobile (React Native, Ionic, NativeScript)</span>
+        <span class="pill">Desktop (Electron, Tauri)</span>
+        <span class="pill">Embedded / IoT</span>
+        <span class="pill">Automation &amp; Scripting (Deno, Bun)</span>
+      </div>
+    </section>
+
+    <section class="history">
+      <h2>Key Milestones</h2>
+      <ul>
+        <li><strong>1995:</strong> LiveScript released in Netscape, renamed JavaScript.</li>
+        <li><strong>1997:</strong> ECMAScript 1 published; standardization begins.</li>
+        <li><strong>2009:</strong> ECMAScript 5 introduces JSON, strict mode, array helpers.</li>
+        <li><strong>2015:</strong> ECMAScript 2015 (ES6) delivers classes, modules, arrow functions, promises.</li>
+        <li><strong>2017→today:</strong> Annual releases add async/await, optional chaining, top-level await, and more.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Core Language Traits</h2>
+      <dl>
+        <div>
+          <dt>Case Sensitive</dt>
+          <dd>
+            Identifiers like <code>totalScore</code> and <code>totalscore</code> are different. Stick to camelCase for variables and functions, PascalCase for classes, and ALL_CAPS for constants.
+          </dd>
+        </div>
+        <div>
+          <dt>Dynamic Typing</dt>
+          <dd>
+            Variable types are determined at runtime. Use <code>typeof</code> and strict equality to avoid coercion surprises.
+          </dd>
+        </div>
+        <div>
+          <dt>Prototype-based</dt>
+          <dd>
+            Objects inherit directly from other objects. Classes are syntactic sugar over prototypes.</dd>
+        </div>
+        <div>
+          <dt>Single-threaded Event Loop</dt>
+          <dd>
+            JavaScript runs on a single thread, delegating asynchronous work to the runtime (browser or Node.js) event loop.
+          </dd>
+        </div>
+        <div>
+          <dt>First-class Functions</dt>
+          <dd>
+            Functions can be stored in variables, passed as arguments, or returned from other functions.</dd>
+        </div>
+        <div>
+          <dt>Interpreted/JIT-compiled</dt>
+          <dd>
+            JS engines compile code just-in-time to optimized machine code for performance.
+          </dd>
+        </div>
+      </dl>
+    </section>
+
+    <section>
+      <h2>Essential Syntax Rules</h2>
+      <ul>
+        <li>Always declare variables with <code>const</code> or <code>let</code>; avoid <code>var</code> in modern code.</li>
+        <li>End statements with semicolons in team projects to avoid ASI (automatic semicolon insertion) pitfalls.</li>
+        <li>Use strict equality (<code>===</code>) over abstract equality (<code>==</code>).</li>
+        <li>Comment with <code>// single line</code> or <code>/* multi-line */</code>; keep comments focused on why, not what.</li>
+        <li>Group related code into modules or functions for readability and reuse.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Example: Case Sensitivity & Runtime Environments</h2>
+  <pre class="code-block"><code>// Run this snippet in Node.js or a browser console
+const total = 42;
+const Total = 7;
+
+console.log(total); // 42
+console.log(Total); // 7 (different identifier because JS is case sensitive)
+
+const whereAmI = typeof window !== "undefined" ? "browser" : "Node.js";
+console.log(`This code is running in the ${whereAmI} environment.`);
+</code></pre>
+      <p>
+        Try saving the code in <code>00_fundamentals.js</code> and loading it from this page to see the output in the developer console.
+      </p>
+    </section>
+  </main>
+
+  <script src="00_fundamentals.js" defer></script>
+</body>
+</html>

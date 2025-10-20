@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Arrays and Iteration Methods</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Arrays and Iteration Methods - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li>Arrays are zero-indexed and mutable—watch for methods that mutate (<code>push</code>, <code>splice</code>) versus those that return copies (<code>slice</code>, <code>map</code>).</li>
+      <li>Spread (<code>[...arr]</code>) and rest parameters (<code>function fn(...args)</code>) simplify cloning and gathering arguments.</li>
+      <li><code>map</code> transforms values, <code>filter</code> selects values, <code>reduce</code> aggregates values.</li>
+      <li>Destructuring extracts values quickly: <code>const [first, ...rest] = arr;</code></li>
+    </ul>
+    <p>
+      Encourage students to rewrite imperative loops with array helpers to practice declarative thinking.
+    </p>
+  </section>
+
+  <section class="arrays-overview">
+    <h2>Overview</h2>
+    <p>Arrays are ordered collections of values that can contain any data type. JavaScript provides powerful methods for creating, manipulating, and iterating over arrays.</p>
+  </section>
+
+  <section class="array-section array-basics">
+    <h2>Array Basics</h2>
+    <p>Creating, accessing, and basic manipulation of arrays.</p>
+    
+    <div class="example">
+      <code>// Creating arrays</code><br>
+      <code>let fruits = ["apple", "banana", "orange"];</code><br>
+      <code>let numbers = [1, 2, 3, 4, 5];</code><br>
+      <code>let mixed = [1, "hello", true, null, { name: "John" }];</code><br>
+      <code>let empty = [];</code><br><br>
+      <code>// Array constructor</code><br>
+      <code>let arr1 = new Array(3); // [empty × 3]</code><br>
+      <code>let arr2 = new Array(1, 2, 3); // [1, 2, 3]</code><br><br>
+      <code>// Array.of() - better for single numbers</code><br>
+      <code>let arr3 = Array.of(3); // [3]</code><br>
+      <code>let arr4 = Array.of(1, 2, 3); // [1, 2, 3]</code><br><br>
+      <code>// Array.from() - create from iterables</code><br>
+      <code>let arr5 = Array.from("hello"); // ["h", "e", "l", "l", "o"]</code><br>
+      <code>let arr6 = Array.from({ length: 5 }, (_, i) => i * 2); // [0, 2, 4, 6, 8]</code>
+    </div>
+
+    <h3>Accessing Array Elements</h3>
+    <div class="example">
+      <code>let colors = ["red", "green", "blue", "yellow"];</code><br><br>
+      <code>// Access by index (zero-based)</code><br>
+      <code>console.log(colors[0]); // "red"</code><br>
+      <code>console.log(colors[1]); // "green"</code><br>
+      <code>console.log(colors[colors.length - 1]); // "yellow"</code><br><br>
+      <code>// Modify elements</code><br>
+      <code>colors[0] = "purple";</code><br>
+      <code>console.log(colors); // ["purple", "green", "blue", "yellow"]</code><br><br>
+      <code>// Array length</code><br>
+      <code>console.log(colors.length); // 4</code><br>
+      <code>colors.length = 2; // Truncate array</code><br>
+      <code>console.log(colors); // ["purple", "green"]</code><br><br>
+      <code>// Check if array includes element</code><br>
+      <code>console.log(colors.includes("green")); // true</code><br>
+      <code>console.log(colors.indexOf("blue")); // -1 (not found)</code>
+    </div>
+
+    <h3>Array Destructuring</h3>
+    <div class="example">
+      <code>let numbers = [1, 2, 3, 4, 5];</code><br><br>
+      <code>// Basic destructuring</code><br>
+      <code>let [first, second, third] = numbers;</code><br>
+      <code>console.log(first, second, third); // 1 2 3</code><br><br>
+      <code>// Skip elements</code><br>
+      <code>let [a, , c] = numbers;</code><br>
+      <code>console.log(a, c); // 1 3</code><br><br>
+      <code>// Rest operator</code><br>
+      <code>let [head, ...tail] = numbers;</code><br>
+      <code>console.log(head); // 1</code><br>
+      <code>console.log(tail); // [2, 3, 4, 5]</code><br><br>
+      <code>// Default values</code><br>
+      <code>let [x, y, z = 10] = [1, 2];</code><br>
+      <code>console.log(x, y, z); // 1 2 10</code><br><br>
+      // Swap variables
+      <code>let a = 1, b = 2;</code><br>
+      <code>[a, b] = [b, a];</code><br>
+      <code>console.log(a, b); // 2 1</code>
+    </div>
+  </section>
+
+  <section class="array-section array-methods">
+    <h2>Array Methods</h2>
+    <p>Methods for adding, removing, and modifying array elements.</p>
+    
+    <div class="example">
+      <code>let fruits = ["apple", "banana"];</code><br><br>
+      <code>// Adding elements</code><br>
+      <code>fruits.push("orange"); // Add to end</code><br>
+      <code>console.log(fruits); // ["apple", "banana", "orange"]</code><br><br>
+      <code>fruits.unshift("grape"); // Add to beginning</code><br>
+      <code>console.log(fruits); // ["grape", "apple", "banana", "orange"]</code><br><br>
+      <code>// Removing elements</code><br>
+      <code>let last = fruits.pop(); // Remove from end</code><br>
+      <code>console.log(last); // "orange"</code><br>
+      <code>console.log(fruits); // ["grape", "apple", "banana"]</code><br><br>
+      <code>let first = fruits.shift(); // Remove from beginning</code><br>
+      <code>console.log(first); // "grape"</code><br>
+      <code>console.log(fruits); // ["apple", "banana"]</code><br><br>
+      <code>// splice() - remove/add elements at specific position</code><br>
+      <code>let removed = fruits.splice(1, 1, "cherry", "date");</code><br>
+      <code>console.log(removed); // ["banana"]</code><br>
+      <code>console.log(fruits); // ["apple", "cherry", "date"]</code><br><br>
+      <code>// slice() - create a copy of part of array</code><br>
+      <code>let copy = fruits.slice(1, 3); // From index 1 to 3 (exclusive)</code><br>
+      <code>console.log(copy); // ["cherry", "date"]</code><br>
+      <code>console.log(fruits); // ["apple", "cherry", "date"] (unchanged)</code>
+    </div>
+
+    <h3>Array Concatenation and Spreading</h3>
+    <div class="example">
+      <code>let arr1 = [1, 2, 3];</code><br>
+      <code>let arr2 = [4, 5, 6];</code><br>
+      <code>let arr3 = [7, 8, 9];</code><br><br>
+      <code>// concat() method</code><br>
+      <code>let combined1 = arr1.concat(arr2, arr3);</code><br>
+      <code>console.log(combined1); // [1, 2, 3, 4, 5, 6, 7, 8, 9]</code><br><br>
+      <code>// Spread operator (modern approach)</code><br>
+      <code>let combined2 = [...arr1, ...arr2, ...arr3];</code><br>
+      <code>console.log(combined2); // [1, 2, 3, 4, 5, 6, 7, 8, 9]</code><br><br>
+      <code>// Insert elements in middle</code><br>
+      <code>let inserted = [...arr1, "middle", ...arr2];</code><br>
+      <code>console.log(inserted); // [1, 2, 3, "middle", 4, 5, 6]</code><br><br>
+      <code>// Clone array</code><br>
+      <code>let cloned = [...arr1];</code><br>
+      <code>console.log(cloned); // [1, 2, 3]</code><br>
+      <code>console.log(cloned === arr1); // false (different references)</code>
+    </div>
+  </section>
+
+  <section class="array-section iteration-methods">
+    <h2>Iteration Methods</h2>
+    <p>Powerful methods for transforming, filtering, and processing arrays.</p>
+    
+    <div class="example">
+      <code>let numbers = [1, 2, 3, 4, 5];</code><br><br>
+      <code>// forEach() - execute function for each element</code><br>
+      <code>numbers.forEach((num, index) => {</code><br>
+      <code>&nbsp;&nbsp;console.log(`${index}: ${num}`);</code><br>
+      <code>});</code><br><br>
+      <code>// map() - transform each element</code><br>
+      <code>let doubled = numbers.map(num => num * 2);</code><br>
+      <code>console.log(doubled); // [2, 4, 6, 8, 10]</code><br><br>
+      <code>// filter() - select elements that meet condition</code><br>
+      <code>let evens = numbers.filter(num => num % 2 === 0);</code><br>
+      <code>console.log(evens); // [2, 4]</code><br><br>
+      <code>// reduce() - accumulate values</code><br>
+      <code>let sum = numbers.reduce((acc, num) => acc + num, 0);</code><br>
+      <code>console.log(sum); // 15</code><br><br>
+      <code>// find() - find first element that meets condition</code><br>
+      <code>let found = numbers.find(num => num > 3);</code><br>
+      <code>console.log(found); // 4</code><br><br>
+      <code>// some() - check if any element meets condition</code><br>
+      <code>let hasEven = numbers.some(num => num % 2 === 0);</code><br>
+      <code>console.log(hasEven); // true</code><br><br>
+      <code>// every() - check if all elements meet condition</code><br>
+      <code>let allPositive = numbers.every(num => num > 0);</code><br>
+      <code>console.log(allPositive); // true</code>
+    </div>
+
+    <h3>Chaining Array Methods</h3>
+    <div class="example">
+      <code>let students = [</code><br>
+      <code>&nbsp;&nbsp;{ name: "Alice", grade: 85, age: 20 },</code><br>
+      <code>&nbsp;&nbsp;{ name: "Bob", grade: 92, age: 19 },</code><br>
+      <code>&nbsp;&nbsp;{ name: "Charlie", grade: 78, age: 21 },</code><br>
+      <code>&nbsp;&nbsp;{ name: "Diana", grade: 96, age: 20 }</code><br>
+      <code>];</code><br><br>
+      <code>// Chain multiple operations</code><br>
+      <code>let topStudents = students</code><br>
+      <code>&nbsp;&nbsp;.filter(student => student.grade >= 90)</code><br>
+      <code>&nbsp;&nbsp;.map(student => student.name)</code><br>
+      <code>&nbsp;&nbsp;.sort();</code><br><br>
+      <code>console.log(topStudents); // ["Bob", "Diana"]</code><br><br>
+      <code>// Calculate average grade for students over 19</code><br>
+      <code>let averageGrade = students</code><br>
+      <code>&nbsp;&nbsp;.filter(student => student.age > 19)</code><br>
+      <code>&nbsp;&nbsp;.map(student => student.grade)</code><br>
+      <code>&nbsp;&nbsp;.reduce((sum, grade) => sum + grade, 0) / students.filter(s => s.age > 19).length;</code><br><br>
+      <code>console.log(averageGrade); // 87.5</code>
+    </div>
+  </section>
+
+  <section class="array-section advanced-arrays">
+    <h2>Advanced Array Operations</h2>
+    <p>Sorting, searching, and other advanced array operations.</p>
+    
+    <div class="example">
+      <code>let fruits = ["banana", "apple", "cherry", "date"];</code><br><br>
+      <code>// sort() - sorts in place</code><br>
+      <code>fruits.sort();</code><br>
+      <code>console.log(fruits); // ["apple", "banana", "cherry", "date"]</code><br><br>
+      <code>// Custom sort function</code><br>
+      <code>let numbers = [10, 5, 40, 25, 1000, 1];</code><br>
+      <code>numbers.sort((a, b) => a - b); // Ascending</code><br>
+      <code>console.log(numbers); // [1, 5, 10, 25, 40, 1000]</code><br><br>
+      <code>numbers.sort((a, b) => b - a); // Descending</code><br>
+      <code>console.log(numbers); // [1000, 40, 25, 10, 5, 1]</code><br><br>
+      <code>// reverse() - reverse array in place</code><br>
+      <code>let reversed = [...numbers].reverse();</code><br>
+      <code>console.log(reversed); // [1, 5, 10, 25, 40, 1000]</code><br><br>
+      <code>// flat() - flatten nested arrays</code><br>
+      <code>let nested = [1, [2, 3], [4, [5, 6]]];</code><br>
+      <code>let flattened = nested.flat(); // [1, 2, 3, 4, [5, 6]]</code><br>
+      <code>let fullyFlattened = nested.flat(2); // [1, 2, 3, 4, 5, 6]</code><br><br>
+      <code>// flatMap() - map then flatten</code><br>
+      <code>let sentences = ["Hello world", "How are you"];</code><br>
+      <code>let words = sentences.flatMap(sentence => sentence.split(" "));</code><br>
+      <code>console.log(words); // ["Hello", "world", "How", "are", "you"]</code>
+    </div>
+
+    <h3>Array Searching and Testing</h3>
+    <div class="example">
+      <code>let data = [1, 2, 3, 4, 5, 2, 3];</code><br><br>
+      <code>// indexOf() - find first occurrence</code><br>
+      <code>console.log(data.indexOf(2)); // 1</code><br>
+      <code>console.log(data.indexOf(6)); // -1 (not found)</code><br><br>
+      <code>// lastIndexOf() - find last occurrence</code><br>
+      <code>console.log(data.lastIndexOf(2)); // 5</code><br><br>
+      <code>// findIndex() - find index of first element meeting condition</code><br>
+      <code>console.log(data.findIndex(num => num > 3)); // 3</code><br><br>
+      <code>// includes() - check if array contains value</code><br>
+      <code>console.log(data.includes(3)); // true</code><br>
+      <code>console.log(data.includes(6)); // false</code><br><br>
+      <code>// Array.isArray() - check if value is array</code><br>
+      <code>console.log(Array.isArray(data)); // true</code><br>
+      <code>console.log(Array.isArray("hello")); // false</code>
+    </div>
+  </section>
+
+  <label for="playlistInput">Enter songs (one per line, include duration in minutes after a comma)</label>
+  <textarea id="playlistInput">Dawn Chorus,4
+Evening Breeze,5
+Night Drive,6</textarea>
+  <button id="processBtn">Process Playlist</button>
+
+  <div class="panel">
+    <h2>Results</h2>
+  <pre id="output" class="code-block code-block--wrap"></pre>
+  </div>
+
+  <script src="09_arrays.js" defer></script>
+</body>
+</html>

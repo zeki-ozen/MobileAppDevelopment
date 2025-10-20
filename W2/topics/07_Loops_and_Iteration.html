@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Loops and Iteration</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Loops and Iteration - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li><code>for</code> loops are perfect when you know the number of iterations.</li>
+      <li><code>while</code>/<code>do...while</code> loop until a condition changes—watch out for infinite loops.</li>
+      <li><code>for...of</code> iterates values; <code>for...in</code> iterates keys. Use <code>Object.keys</code>/<code>entries</code> for objects.</li>
+      <li>Array helpers (<code>map</code>, <code>filter</code>, <code>reduce</code>, <code>forEach</code>) emphasize declarative patterns.</li>
+    </ul>
+    <p>
+      Encourage students to refactor loops into helper methods once they understand the imperative form.
+    </p>
+  </section>
+
+  <section class="loops-overview">
+    <h2>Overview</h2>
+    <p>Loops allow you to execute code repeatedly. JavaScript provides several types of loops for different scenarios, from traditional for loops to modern array methods.</p>
+  </section>
+
+  <section class="loop-type for-loop">
+    <h2>for Loops</h2>
+    <p>The most common loop type, ideal when you know the number of iterations.</p>
+    
+    <div class="example">
+      <code>// Basic for loop</code><br>
+      <code>for (let i = 0; i < 5; i++) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Iteration:", i);</code><br>
+      <code>}</code><br>
+      <code>// Output: 0, 1, 2, 3, 4</code><br><br>
+      <code>// Loop through an array</code><br>
+      <code>let fruits = ["apple", "banana", "orange"];</code><br>
+      <code>for (let i = 0; i < fruits.length; i++) {</code><br>
+      <code>&nbsp;&nbsp;console.log(fruits[i]);</code><br>
+      <code>}</code><br><br>
+      <code>// Reverse loop</code><br>
+      <code>for (let i = fruits.length - 1; i >= 0; i--) {</code><br>
+      <code>&nbsp;&nbsp;console.log(fruits[i]);</code><br>
+      <code>}</code><br><br>
+      <code>// Loop with step</code><br>
+      <code>for (let i = 0; i < 10; i += 2) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Even number:", i);</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Nested Loops</h3>
+    <div class="example">
+      <code>// Nested loops for 2D arrays</code><br>
+      <code>let matrix = [</code><br>
+      <code>&nbsp;&nbsp;[1, 2, 3],</code><br>
+      <code>&nbsp;&nbsp;[4, 5, 6],</code><br>
+      <code>&nbsp;&nbsp;[7, 8, 9]</code><br>
+      <code>];</code><br><br>
+      <code>for (let i = 0; i < matrix.length; i++) {</code><br>
+      <code>&nbsp;&nbsp;for (let j = 0; j < matrix[i].length; j++) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log(`[${i}][${j}] = ${matrix[i][j]}`);</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>}</code><br><br>
+      <code>// Multiplication table</code><br>
+      <code>for (let i = 1; i <= 5; i++) {</code><br>
+      <code>&nbsp;&nbsp;for (let j = 1; j <= 5; j++) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log(`${i} × ${j} = ${i * j}`);</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <section class="loop-type while-loop">
+    <h2>while and do...while Loops</h2>
+    <p>Use when you don't know the exact number of iterations in advance.</p>
+    
+    <div class="example">
+      <code>// while loop</code><br>
+      <code>let count = 0;</code><br>
+      <code>while (count < 5) {</code><br>
+      <code>&nbsp;&nbsp;console.log("Count:", count);</code><br>
+      <code>&nbsp;&nbsp;count++;</code><br>
+      <code>}</code><br><br>
+      <code>// do...while loop (executes at least once)</code><br>
+      <code>let userInput;</code><br>
+      <code>do {</code><br>
+      <code>&nbsp;&nbsp;userInput = prompt("Enter a number (0 to quit):");</code><br>
+      <code>&nbsp;&nbsp;console.log("You entered:", userInput);</code><br>
+      <code>} while (userInput !== "0");</code><br><br>
+      <code>// Practical example: processing until condition met</code><br>
+      <code>let attempts = 0;</code><br>
+      <code>let success = false;</code><br>
+      <code>while (!success && attempts < 3) {</code><br>
+      <code>&nbsp;&nbsp;attempts++;</code><br>
+      <code>&nbsp;&nbsp;console.log(`Attempt ${attempts}`);</code><br>
+      <code>&nbsp;&nbsp;// Simulate some operation</code><br>
+      <code>&nbsp;&nbsp;success = Math.random() > 0.5; // Random success</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Avoiding Infinite Loops</h3>
+    <div class="example">
+      <code>// ❌ Dangerous: infinite loop</code><br>
+      <code>// let i = 0;</code><br>
+      <code>// while (i < 10) {</code><br>
+      <code>//   console.log(i); // Forgot to increment i!</code><br>
+      <code>// }</code><br><br>
+      <code>// ✅ Safe: always increment</code><br>
+      <code>let i = 0;</code><br>
+      <code>while (i < 10) {</code><br>
+      <code>&nbsp;&nbsp;console.log(i);</code><br>
+      <code>&nbsp;&nbsp;i++; // Always increment!</code><br>
+      <code>}</code><br><br>
+      <code>// ✅ Safe: use break to exit</code><br>
+      <code>let counter = 0;</code><br>
+      <code>while (true) {</code><br>
+      <code>&nbsp;&nbsp;counter++;</code><br>
+      <code>&nbsp;&nbsp;if (counter > 5) break; // Exit condition</code><br>
+      <code>&nbsp;&nbsp;console.log("Counter:", counter);</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <section class="loop-type for-of-loop">
+    <h2>for...of Loop</h2>
+    <p>Iterates over iterable objects (arrays, strings, etc.) and provides direct access to values.</p>
+    
+    <div class="example">
+      <code>// Iterating over arrays</code><br>
+      <code>let colors = ["red", "green", "blue"];</code><br>
+      <code>for (let color of colors) {</code><br>
+      <code>&nbsp;&nbsp;console.log(color);</code><br>
+      <code>}</code><br><br>
+      <code>// Iterating over strings</code><br>
+      <code>let text = "Hello";</code><br>
+      <code>for (let char of text) {</code><br>
+      <code>&nbsp;&nbsp;console.log(char);</code><br>
+      <code>}</code><br><br>
+      <code>// Getting both index and value</code><br>
+      <code>let fruits = ["apple", "banana", "orange"];</code><br>
+      <code>for (let [index, fruit] of fruits.entries()) {</code><br>
+      <code>&nbsp;&nbsp;console.log(`${index}: ${fruit}`);</code><br>
+      <code>}</code><br><br>
+      <code>// Iterating over Set</code><br>
+      <code>let uniqueNumbers = new Set([1, 2, 2, 3, 3, 4]);</code><br>
+      <code>for (let num of uniqueNumbers) {</code><br>
+      <code>&nbsp;&nbsp;console.log(num); // 1, 2, 3, 4</code><br>
+      <code>}</code><br><br>
+      <code>// Iterating over Map</code><br>
+      <code>let scores = new Map([</code><br>
+      <code>&nbsp;&nbsp;["Alice", 95],</code><br>
+      <code>&nbsp;&nbsp;["Bob", 87],</code><br>
+      <code>&nbsp;&nbsp;["Charlie", 92]</code><br>
+      <code>]);</code><br>
+      <code>for (let [name, score] of scores) {</code><br>
+      <code>&nbsp;&nbsp;console.log(`${name}: ${score}`);</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <section class="loop-type for-in-loop">
+    <h2>for...in Loop</h2>
+    <p>Iterates over object properties. Use with caution and prefer Object methods for arrays.</p>
+    
+    <div class="example">
+      <code>// Iterating over object properties</code><br>
+      <code>let person = {</code><br>
+      <code>&nbsp;&nbsp;name: "John",</code><br>
+      <code>&nbsp;&nbsp;age: 30,</code><br>
+      <code>&nbsp;&nbsp;city: "New York"</code><br>
+      <code>};</code><br><br>
+      <code>for (let key in person) {</code><br>
+      <code>&nbsp;&nbsp;console.log(`${key}: ${person[key]}`);</code><br>
+      <code>}</code><br><br>
+      <code>// ❌ Don't use for...in with arrays</code><br>
+      <code>let arr = ["a", "b", "c"];</code><br>
+      <code>for (let index in arr) {</code><br>
+      <code>&nbsp;&nbsp;console.log(index, arr[index]); // "0 a", "1 b", "2 c"</code><br>
+      <code>}</code><br><br>
+      <code>// ✅ Use for...of for arrays</code><br>
+      <code>for (let value of arr) {</code><br>
+      <code>&nbsp;&nbsp;console.log(value); // "a", "b", "c"</code><br>
+      <code>}</code><br><br>
+      <code>// ✅ Use Object methods for objects</code><br>
+      <code>for (let key of Object.keys(person)) {</code><br>
+      <code>&nbsp;&nbsp;console.log(key);</code><br>
+      <code>}</code><br><br>
+      <code>for (let value of Object.values(person)) {</code><br>
+      <code>&nbsp;&nbsp;console.log(value);</code><br>
+      <code>}</code><br><br>
+      <code>for (let [key, value] of Object.entries(person)) {</code><br>
+      <code>&nbsp;&nbsp;console.log(`${key}: ${value}`);</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <section class="loop-type array-methods">
+    <h2>Array Iteration Methods</h2>
+    <p>Modern, functional approach to iteration with built-in methods.</p>
+    
+    <div class="example">
+      <code>let numbers = [1, 2, 3, 4, 5];</code><br><br>
+      <code>// forEach - execute function for each element</code><br>
+      <code>numbers.forEach((num, index) => {</code><br>
+      <code>&nbsp;&nbsp;console.log(`${index}: ${num}`);</code><br>
+      <code>});</code><br><br>
+      <code>// map - transform each element</code><br>
+      <code>let doubled = numbers.map(num => num * 2);</code><br>
+      <code>console.log(doubled); // [2, 4, 6, 8, 10]</code><br><br>
+      <code>// filter - select elements that meet condition</code><br>
+      <code>let evens = numbers.filter(num => num % 2 === 0);</code><br>
+      <code>console.log(evens); // [2, 4]</code><br><br>
+      <code>// reduce - accumulate values</code><br>
+      <code>let sum = numbers.reduce((acc, num) => acc + num, 0);</code><br>
+      <code>console.log(sum); // 15</code><br><br>
+      <code>// find - find first element that meets condition</code><br>
+      <code>let found = numbers.find(num => num > 3);</code><br>
+      <code>console.log(found); // 4</code><br><br>
+      <code>// some - check if any element meets condition</code><br>
+      <code>let hasEven = numbers.some(num => num % 2 === 0);</code><br>
+      <code>console.log(hasEven); // true</code><br><br>
+      <code>// every - check if all elements meet condition</code><br>
+      <code>let allPositive = numbers.every(num => num > 0);</code><br>
+      <code>console.log(allPositive); // true</code>
+    </div>
+
+    <h3>Chaining Array Methods</h3>
+    <div class="example">
+      <code>let students = [</code><br>
+      <code>&nbsp;&nbsp;{ name: "Alice", grade: 85 },</code><br>
+      <code>&nbsp;&nbsp;{ name: "Bob", grade: 92 },</code><br>
+      <code>&nbsp;&nbsp;{ name: "Charlie", grade: 78 },</code><br>
+      <code>&nbsp;&nbsp;{ name: "Diana", grade: 96 }</code><br>
+      <code>];</code><br><br>
+      <code>// Chain multiple operations</code><br>
+      <code>let topStudents = students</code><br>
+      <code>&nbsp;&nbsp;.filter(student => student.grade >= 90)</code><br>
+      <code>&nbsp;&nbsp;.map(student => student.name)</code><br>
+      <code>&nbsp;&nbsp;.sort();</code><br><br>
+      <code>console.log(topStudents); // ["Bob", "Diana"]</code><br><br>
+      <code>// Calculate average grade</code><br>
+      <code>let averageGrade = students</code><br>
+      <code>&nbsp;&nbsp;.map(student => student.grade)</code><br>
+      <code>&nbsp;&nbsp;.reduce((sum, grade) => sum + grade, 0) / students.length;</code><br><br>
+      <code>console.log(averageGrade); // 87.75</code>
+    </div>
+  </section>
+
+  <section class="loop-control">
+    <h2>Loop Control Statements</h2>
+    <p>Control the flow of loops with break, continue, and labels.</p>
+    
+    <div class="example">
+      <code>// break - exit the loop completely</code><br>
+      <code>for (let i = 0; i < 10; i++) {</code><br>
+      <code>&nbsp;&nbsp;if (i === 5) break;</code><br>
+      <code>&nbsp;&nbsp;console.log(i); // 0, 1, 2, 3, 4</code><br>
+      <code>}</code><br><br>
+      <code>// continue - skip current iteration</code><br>
+      <code>for (let i = 0; i < 10; i++) {</code><br>
+      <code>&nbsp;&nbsp;if (i % 2 === 0) continue;</code><br>
+      <code>&nbsp;&nbsp;console.log(i); // 1, 3, 5, 7, 9</code><br>
+      <code>}</code><br><br>
+      <code>// Labels for nested loops</code><br>
+      <code>outerLoop: for (let i = 0; i < 3; i++) {</code><br>
+      <code>&nbsp;&nbsp;innerLoop: for (let j = 0; j < 3; j++) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;if (i === 1 && j === 1) break outerLoop;</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log(`i: ${i}, j: ${j}`);</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>}</code>
+    </div>
+  </section>
+
+  <button id="generate">Generate Study Plan</button>
+  <ul id="planList"></ul>
+  <div id="codeOutput"></div>
+
+  <script src="07_loops.js" defer></script>
+</body>
+</html>

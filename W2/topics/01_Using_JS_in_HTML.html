@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Using JavaScript in HTML</title>
+  <link rel="stylesheet" href="styles.css" />
+<p>
+    // Inline script executed as soon as it is parsed
+    console.log("Hello from inline JavaScript!");
+  </script>
+</head>
+<body>
+  <h1>Using JavaScript Inside HTML</h1>
+  <section class="lesson-notes">
+    <h2>Quick Teaching Notes</h2>
+    <ul class="key-points">
+      <li><strong>Inline scripts</strong> live between <code>&lt;script&gt;</code> tags. They execute immediately as the browser parses the markup.</li>
+      <li><strong>External scripts</strong> reference a separate <code>.js</code> file via the <code>src</code> attribute. Use <code>defer</code> to wait for the DOM.</li>
+      <li>Scripts can also appear in attributes such as <code>onclick="..."</code>, but prefer <code>addEventListener</code> for separation of concerns.</li>
+      <li><code>&lt;script type="module"&gt;</code> enables ES modules with <code>import</code>/<code>export</code>; great for structured applications.</li>
+    </ul>
+    <div class="reference-card">
+      <h3>Script Placement Guidelines</h3>
+      <p>
+        Place blocking scripts at the end of <code>&lt;body&gt;</code>, or add <code>defer</code> in the document head to keep initial rendering fast. The only time you need an inline script in the head is for critical configuration or to set up feature detection before the page loads.
+      </p>
+    </div>
+  </section>
+
+  <button id="toggleHighlight">Toggle Highlight</button>
+  <div id="colorTarget">Watch my background color change!</div>
+
+  <section class="lesson-notes">
+    <h2>Inline vs External Demonstration</h2>
+    <p>
+      The small console log in the <code>&lt;head&gt;</code> proves inline scripts execute as soon as the browser encounters them. The button behaviour below is powered by an external script (<code>01_using_js_in_html.js</code>) that waits for the DOM via <code>defer</code> and interacts with the page using <code>addEventListener</code>.
+    </p>
+    <p>
+      Try adding the attribute <code>onclick="alert('Hi')"</code> directly on the button to see how inline event handlers work. Then remove it and rely on the external script—this helps students appreciate separation of structure and behaviour.
+    </p>
+  </section>
+
+  <script defer src="01_using_js_in_html.js"></script>
+</body>
+</html>

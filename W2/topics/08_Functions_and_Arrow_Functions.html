@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Functions and Arrow Functions</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Functions and Arrow Functions - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li>Function declarations hoist; function expressions and arrow functions do not.</li>
+      <li>Arrow functions inherit <code>this</code> and lack their own <code>arguments</code>; great for callbacks.</li>
+      <li>Use default parameters and destructuring for clean signatures.</li>
+      <li>Pure functions return the same output for the same inputs and avoid side effects.</li>
+    </ul>
+    <p>
+      Show how to break large functions into smaller helpers. Discuss when to choose arrow functions versus traditional declarations.
+    </p>
+  </section>
+
+  <section class="functions-overview">
+    <h2>Overview</h2>
+    <p>Functions are reusable blocks of code that can be called with parameters. JavaScript offers multiple ways to define functions, each with its own characteristics and use cases.</p>
+  </section>
+
+  <section class="function-type function-declaration">
+    <h2>Function Declarations</h2>
+    <p>Traditional function syntax that is hoisted and can be called before its definition.</p>
+    
+    <div class="example">
+      <code>// Basic function declaration</code><br>
+      <code>function greet(name) {</code><br>
+      <code>&nbsp;&nbsp;return `Hello, ${name}!`;</code><br>
+      <code>}</code><br><br>
+      <code>console.log(greet("John")); // "Hello, John!"</code><br><br>
+      <code>// Function with multiple parameters</code><br>
+      <code>function calculateArea(length, width) {</code><br>
+      <code>&nbsp;&nbsp;return length * width;</code><br>
+      <code>}</code><br><br>
+      <code>console.log(calculateArea(5, 3)); // 15</code><br><br>
+      <code>// Function with default parameters</code><br>
+      <code>function greetWithDefault(name = "World") {</code><br>
+      <code>&nbsp;&nbsp;return `Hello, ${name}!`;</code><br>
+      <code>}</code><br><br>
+      <code>console.log(greetWithDefault()); // "Hello, World!"</code><br>
+      <code>console.log(greetWithDefault("Alice")); // "Hello, Alice!"</code><br><br>
+      <code>// Hoisting example</code><br>
+      <code>console.log(hoistedFunction()); // "I'm hoisted!"</code><br><br>
+      <code>function hoistedFunction() {</code><br>
+      <code>&nbsp;&nbsp;return "I'm hoisted!";</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Function Parameters and Arguments</h3>
+    <div class="example">
+      <code>// Rest parameters (...args)</code><br>
+      <code>function sum(...numbers) {</code><br>
+      <code>&nbsp;&nbsp;return numbers.reduce((total, num) => total + num, 0);</code><br>
+      <code>}</code><br><br>
+      <code>console.log(sum(1, 2, 3, 4)); // 10</code><br>
+      <code>console.log(sum(10, 20)); // 30</code><br><br>
+      <code>// Destructuring parameters</code><br>
+      <code>function displayUser({ name, age, city }) {</code><br>
+      <code>&nbsp;&nbsp;return `${name} is ${age} years old and lives in ${city}`;</code><br>
+      <code>}</code><br><br>
+      <code>let user = { name: "John", age: 30, city: "New York" };</code><br>
+      <code>console.log(displayUser(user));</code><br><br>
+      <code>// Mixed parameter types</code><br>
+      <code>function createProfile(name, { age = 18, city = "Unknown" } = {}) {</code><br>
+      <code>&nbsp;&nbsp;return { name, age, city };</code><br>
+      <code>}</code><br><br>
+      <code>console.log(createProfile("Alice")); // { name: "Alice", age: 18, city: "Unknown" }</code>
+    </div>
+  </section>
+
+  <section class="function-type function-expression">
+    <h2>Function Expressions</h2>
+    <p>Functions assigned to variables. Not hoisted and useful for callbacks and conditional function creation.</p>
+    
+    <div class="example">
+      <code>// Basic function expression</code><br>
+      <code>const multiply = function(a, b) {</code><br>
+      <code>&nbsp;&nbsp;return a * b;</code><br>
+      <code>};</code><br><br>
+      <code>console.log(multiply(3, 4)); // 12</code><br><br>
+      <code>// Named function expression</code><br>
+      <code>const factorial = function fact(n) {</code><br>
+      <code>&nbsp;&nbsp;if (n <= 1) return 1;</code><br>
+      <code>&nbsp;&nbsp;return n * fact(n - 1);</code><br>
+      <code>};</code><br><br>
+      <code>console.log(factorial(5)); // 120</code><br><br>
+      <code>// Function expressions in objects</code><br>
+      <code>const calculator = {</code><br>
+      <code>&nbsp;&nbsp;add: function(a, b) { return a + b; },</code><br>
+      <code>&nbsp;&nbsp;subtract: function(a, b) { return a - b; },</code><br>
+      <code>&nbsp;&nbsp;multiply: function(a, b) { return a * b; }</code><br>
+      <code>};</code><br><br>
+      <code>console.log(calculator.add(5, 3)); // 8</code><br><br>
+      <code>// Conditional function creation</code><br>
+      <code>let operation;</code><br>
+      <code>if (Math.random() > 0.5) {</code><br>
+      <code>&nbsp;&nbsp;operation = function(x) { return x * 2; };</code><br>
+      <code>} else {</code><br>
+      <code>&nbsp;&nbsp;operation = function(x) { return x + 10; };</code><br>
+      <code>}</code><br><br>
+      <code>console.log(operation(5)); // Either 10 or 15</code>
+    </div>
+
+    <h3>Immediately Invoked Function Expressions (IIFE)</h3>
+    <div class="example">
+      <code>// Basic IIFE</code><br>
+      <code>(function() {</code><br>
+      <code>&nbsp;&nbsp;console.log("I run immediately!");</code><br>
+      <code>})();</code><br><br>
+      <code>// IIFE with parameters</code><br>
+      <code>(function(name) {</code><br>
+      <code>&nbsp;&nbsp;console.log(`Hello, ${name}!`);</code><br>
+      <code>})("World");</code><br><br>
+      <code>// IIFE for module pattern</code><br>
+      <code>const myModule = (function() {</code><br>
+      <code>&nbsp;&nbsp;let privateVariable = 0;</code><br><br>
+      <code>&nbsp;&nbsp;return {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;increment: function() { privateVariable++; },</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;getValue: function() { return privateVariable; }</code><br>
+      <code>&nbsp;&nbsp;};</code><br>
+      <code>})();</code><br><br>
+      <code>myModule.increment();</code><br>
+      <code>console.log(myModule.getValue()); // 1</code>
+    </div>
+  </section>
+
+  <section class="function-type arrow-functions">
+    <h2>Arrow Functions</h2>
+    <p>Concise syntax for function expressions. They don't have their own <code>this</code> and are great for callbacks.</p>
+    
+    <div class="example">
+      <code>// Basic arrow function</code><br>
+      <code>const add = (a, b) => a + b;</code><br>
+      <code>console.log(add(2, 3)); // 5</code><br><br>
+      <code>// Single parameter (parentheses optional)</code><br>
+      <code>const square = x => x * x;</code><br>
+      <code>console.log(square(4)); // 16</code><br><br>
+      <code>// No parameters</code><br>
+      <code>const sayHello = () => "Hello!";</code><br>
+      <code>console.log(sayHello()); // "Hello!"</code><br><br>
+      <code>// Multiple parameters</code><br>
+      <code>const greet = (firstName, lastName) => `Hello, ${firstName} ${lastName}!`;</code><br>
+      <code>console.log(greet("John", "Doe")); // "Hello, John Doe!"</code><br><br>
+      <code>// Arrow function with block body</code><br>
+      <code>const processArray = (arr) => {</code><br>
+      <code>&nbsp;&nbsp;let result = [];</code><br>
+      <code>&nbsp;&nbsp;for (let item of arr) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;result.push(item * 2);</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>&nbsp;&nbsp;return result;</code><br>
+      <code>};</code><br><br>
+      <code>console.log(processArray([1, 2, 3])); // [2, 4, 6]</code>
+    </div>
+
+    <h3>Arrow Functions vs Regular Functions</h3>
+    <div class="example">
+      <code>// this binding difference</code><br>
+      <code>const obj = {</code><br>
+      <code>&nbsp;&nbsp;name: "MyObject",</code><br>
+      <code>&nbsp;&nbsp;regularFunction: function() {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Regular function this:", this.name);</code><br>
+      <code>&nbsp;&nbsp;},</code><br>
+      <code>&nbsp;&nbsp;arrowFunction: () => {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;console.log("Arrow function this:", this.name); // undefined</code><br>
+      <code>&nbsp;&nbsp;}</code><br>
+      <code>};</code><br><br>
+      <code>obj.regularFunction(); // "Regular function this: MyObject"</code><br>
+      <code>obj.arrowFunction(); // "Arrow function this: undefined"</code><br><br>
+      <code>// arguments object</code><br>
+      <code>function regularFunc() {</code><br>
+      <code>&nbsp;&nbsp;console.log("Regular function arguments:", arguments);</code><br>
+      <code>}</code><br><br>
+      <code>const arrowFunc = () => {</code><br>
+      <code>&nbsp;&nbsp;// console.log("Arrow function arguments:", arguments); // ReferenceError</code><br>
+      <code>};</code><br><br>
+      <code>regularFunc(1, 2, 3); // Works</code><br>
+      <code>arrowFunc(1, 2, 3); // Error</code>
+    </div>
+
+    <h3>When to Use Arrow Functions</h3>
+    <div class="example">
+      <code>// ✅ Great for array methods</code><br>
+      <code>let numbers = [1, 2, 3, 4, 5];</code><br>
+      <code>let doubled = numbers.map(n => n * 2);</code><br>
+      <code>let evens = numbers.filter(n => n % 2 === 0);</code><br>
+      <code>let sum = numbers.reduce((acc, n) => acc + n, 0);</code><br><br>
+      <code>// ✅ Great for event handlers</code><br>
+      <code>button.addEventListener('click', () => {</code><br>
+      <code>&nbsp;&nbsp;console.log('Button clicked!');</code><br>
+      <code>});</code><br><br>
+      <code>// ✅ Great for setTimeout/setInterval</code><br>
+      <code>setTimeout(() => console.log('Delayed message'), 1000);</code><br><br>
+      <code>// ❌ Don't use for object methods (this binding issues)</code><br>
+      <code>const person = {</code><br>
+      <code>&nbsp;&nbsp;name: "John",</code><br>
+      <code>&nbsp;&nbsp;// ❌ Bad: arrow function</code><br>
+      <code>&nbsp;&nbsp;greet: () => `Hello, I'm ${this.name}`,</code><br>
+      <code>&nbsp;&nbsp;// ✅ Good: regular function</code><br>
+      <code>&nbsp;&nbsp;greetProperly: function() { return `Hello, I'm ${this.name}`; }</code><br>
+      <code>};</code>
+    </div>
+  </section>
+
+  <section class="function-type advanced-concepts">
+    <h2>Advanced Function Concepts</h2>
+    <p>Higher-order functions, closures, and functional programming concepts.</p>
+    
+    <div class="example">
+      <code>// Higher-order functions</code><br>
+      <code>function createMultiplier(factor) {</code><br>
+      <code>&nbsp;&nbsp;return function(number) {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;return number * factor;</code><br>
+      <code>&nbsp;&nbsp;};</code><br>
+      <code>}</code><br><br>
+      <code>const double = createMultiplier(2);</code><br>
+      <code>const triple = createMultiplier(3);</code><br><br>
+      <code>console.log(double(5)); // 10</code><br>
+      <code>console.log(triple(5)); // 15</code><br><br>
+      <code>// Closures</code><br>
+      <code>function createCounter() {</code><br>
+      <code>&nbsp;&nbsp;let count = 0;</code><br>
+      <code>&nbsp;&nbsp;return function() {</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;count++;</code><br>
+      <code>&nbsp;&nbsp;&nbsp;&nbsp;return count;</code><br>
+      <code>&nbsp;&nbsp;};</code><br>
+      <code>}</code><br><br>
+      <code>const counter = createCounter();</code><br>
+      <code>console.log(counter()); // 1</code><br>
+      <code>console.log(counter()); // 2</code><br>
+      <code>console.log(counter()); // 3</code><br><br>
+      <code>// Pure functions</code><br>
+      <code>// ✅ Pure function (no side effects)</code><br>
+      <code>function add(a, b) {</code><br>
+      <code>&nbsp;&nbsp;return a + b;</code><br>
+      <code>}</code><br><br>
+      <code>// ❌ Impure function (has side effects)</code><br>
+      <code>let total = 0;</code><br>
+      <code>function addToTotal(value) {</code><br>
+      <code>&nbsp;&nbsp;total += value; // Side effect: modifies external variable</code><br>
+      <code>&nbsp;&nbsp;return total;</code><br>
+      <code>}</code>
+    </div>
+
+    <h3>Function Composition</h3>
+    <div class="example">
+      <code>// Simple composition</code><br>
+      <code>const addOne = x => x + 1;</code><br>
+      <code>const multiplyByTwo = x => x * 2;</code><br>
+      <code>const square = x => x * x;</code><br><br>
+      <code>// Compose functions</code><br>
+      <code>const composed = (x) => square(multiplyByTwo(addOne(x)));</code><br>
+      <code>console.log(composed(3)); // ((3 + 1) * 2)² = 64</code><br><br>
+      <code>// Generic compose function</code><br>
+      <code>const compose = (...fns) => (value) => fns.reduceRight((acc, fn) => fn(acc), value);</code><br>
+      <code>const composedGeneric = compose(square, multiplyByTwo, addOne);</code><br>
+      <code>console.log(composedGeneric(3)); // 64</code>
+    </div>
+  </section>
+
+  <label>
+    Income (₺)
+    <input id="income" type="number" value="10000" />
+  </label>
+  <label>
+    Tax Rate (%)
+    <input id="rate" type="number" value="18" />
+  </label>
+  <button id="calculate">Calculate Tax</button>
+
+  <div id="result"></div>
+
+  <script src="08_functions.js" defer></script>
+</body>
+</html>

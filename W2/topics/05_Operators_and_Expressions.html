@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Operators and Expressions</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Operators and Expressions - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li>Arithmetic: <code>+</code>, <code>-</code>, <code>*</code>, <code>/</code>, <code>%</code>, <code>**</code>.</li>
+      <li>Comparison: <code>===</code>, <code>!==</code>, <code>&gt;</code>, <code>&lt;</code>, etc. Always prefer strict comparisons.</li>
+      <li>Logical: <code>&amp;&amp;</code>, <code>||</code>, <code>!</code> short-circuit; <code>??</code> handles nullish values.</li>
+      <li>The ternary operator (<code>condition ? a : b</code>) is great for inline decisions.</li>
+    </ul>
+    <p>
+      Demonstrate operator precedence using parentheses. Remind students that string concatenation with <code>+</code> coerces values.
+    </p>
+  </section>
+
+  <section class="operators-overview">
+    <h2>Overview</h2>
+    <p>This comprehensive guide covers all JavaScript operators including arithmetic, comparison, logical, assignment, and special operators.</p>
+  </section>
+
+  <section class="operator-category arithmetic">
+    <h2>Arithmetic Operators</h2>
+    <p>Used for mathematical calculations and string concatenation.</p>
+    
+    <div class="example">
+      <code>// Basic arithmetic</code><br>
+      <code>let a = 10, b = 3;</code><br>
+      <code>console.log(a + b); // 13 (addition)</code><br>
+      <code>console.log(a - b); // 7 (subtraction)</code><br>
+      <code>console.log(a * b); // 30 (multiplication)</code><br>
+      <code>console.log(a / b); // 3.333... (division)</code><br>
+      <code>console.log(a % b); // 1 (modulus/remainder)</code><br>
+      <code>console.log(a ** b); // 1000 (exponentiation)</code><br><br>
+      <code>// String concatenation</code><br>
+      <code>let firstName = "John";</code><br>
+      <code>let lastName = "Doe";</code><br>
+      <code>console.log(firstName + " " + lastName); // "John Doe"</code><br><br>
+      <code>// Type coercion with +</code><br>
+      <code>console.log("5" + 3); // "53" (string concatenation)</code><br>
+      <code>console.log(5 + "3"); // "53" (string concatenation)</code><br>
+      <code>console.log("5" - 3); // 2 (numeric subtraction)</code>
+    </div>
+  </section>
+
+  <section class="operator-category comparison">
+    <h2>Comparison Operators</h2>
+    <p>Used to compare values and return boolean results. Always prefer strict equality.</p>
+    
+    <div class="example">
+      <code>// Strict equality (recommended)</code><br>
+      <code>console.log(5 === 5); // true</code><br>
+      <code>console.log(5 === "5"); // false (different types)</code><br>
+      <code>console.log(5 !== 3); // true</code><br><br>
+      <code>// Loose equality (avoid)</code><br>
+      <code>console.log(5 == 5); // true</code><br>
+      <code>console.log(5 == "5"); // true (type coercion!)</code><br>
+      <code>console.log(5 != 3); // true</code><br><br>
+      <code>// Relational operators</code><br>
+      <code>console.log(5 > 3); // true</code><br>
+      <code>console.log(5 < 3); // false</code><br>
+      <code>console.log(5 >= 5); // true</code><br>
+      <code>console.log(5 <= 3); // false</code><br><br>
+      <code>// Special cases</code><br>
+      <code>console.log(NaN === NaN); // false</code><br>
+      <code>console.log(isNaN(NaN)); // true</code><br>
+      <code>console.log(null === undefined); // false</code><br>
+      <code>console.log(null == undefined); // true</code>
+    </div>
+  </section>
+
+  <section class="operator-category logical">
+    <h2>Logical Operators</h2>
+    <p>Used for boolean logic and short-circuit evaluation.</p>
+    
+    <div class="example">
+      <code>// Logical AND (&&) - short-circuits on first falsy value</code><br>
+      <code>console.log(true && true); // true</code><br>
+      <code>console.log(true && false); // false</code><br>
+      <code>console.log(false && true); // false (short-circuits)</code><br><br>
+      <code>// Logical OR (||) - short-circuits on first truthy value</code><br>
+      <code>console.log(false || true); // true</code><br>
+      <code>console.log(false || false); // false</code><br>
+      <code>console.log(true || false); // true (short-circuits)</code><br><br>
+      <code>// Logical NOT (!)</code><br>
+      <code>console.log(!true); // false</code><br>
+      <code>console.log(!false); // true</code><br><br>
+      <code>// Practical examples</code><br>
+      <code>let user = { name: "John", age: 25 };</code><br>
+      <code>let displayName = user.name || "Anonymous"; // "John"</code><br>
+      <code>let isAdult = user.age && user.age >= 18; // true</code><br><br>
+      <code>// Nullish Coalescing (??) - handles null/undefined</code><br>
+      <code>let config = { timeout: null };</code><br>
+      <code>let timeout = config.timeout ?? 5000; // 5000</code><br>
+      <code>let timeout2 = config.timeout || 5000; // 5000 (but different behavior)</code>
+    </div>
+  </section>
+
+  <section class="operator-category assignment">
+    <h2>Assignment Operators</h2>
+    <p>Used to assign values to variables with various shortcuts.</p>
+    
+    <div class="example">
+      <code>// Basic assignment</code><br>
+      <code>let x = 10;</code><br><br>
+      <code>// Compound assignment</code><br>
+      <code>x += 5; // x = x + 5 (15)</code><br>
+      <code>x -= 3; // x = x - 3 (12)</code><br>
+      <code>x *= 2; // x = x * 2 (24)</code><br>
+      <code>x /= 4; // x = x / 4 (6)</code><br>
+      <code>x %= 5; // x = x % 5 (1)</code><br>
+      <code>x **= 3; // x = x ** 3 (1)</code><br><br>
+      <code>// Increment and decrement</code><br>
+      <code>let counter = 0;</code><br>
+      <code>counter++; // Post-increment: returns 0, then increments to 1</code><br>
+      <code>++counter; // Pre-increment: increments to 2, then returns 2</code><br>
+      <code>counter--; // Post-decrement: returns 2, then decrements to 1</code><br>
+      <code>--counter; // Pre-decrement: decrements to 0, then returns 0</code>
+    </div>
+  </section>
+
+  <section class="operator-category special">
+    <h2>Special Operators</h2>
+    <p>Unique operators for specific JavaScript features.</p>
+    
+    <div class="example">
+      <code>// Ternary operator (conditional operator)</code><br>
+      <code>let age = 20;</code><br>
+      <code>let status = age >= 18 ? "adult" : "minor"; // "adult"</code><br>
+      <code>let message = age >= 18 ? "Welcome!" : "Access denied";</code><br><br>
+      <code>// Chained ternary (avoid for readability)</code><br>
+      <code>let grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : "F";</code><br><br>
+      <code>// typeof operator</code><br>
+      <code>console.log(typeof "hello"); // "string"</code><br>
+      <code>console.log(typeof 42); // "number"</code><br>
+      <code>console.log(typeof true); // "boolean"</code><br>
+      <code>console.log(typeof null); // "object" (quirk!)</code><br>
+      <code>console.log(typeof undefined); // "undefined"</code><br><br>
+      <code>// instanceof operator</code><br>
+      <code>let date = new Date();</code><br>
+      <code>console.log(date instanceof Date); // true</code><br>
+      <code>console.log(date instanceof Object); // true</code><br><br>
+      <code>// in operator (for object properties)</code><br>
+      <code>let person = { name: "John", age: 25 };</code><br>
+      <code>console.log("name" in person); // true</code><br>
+      <code>console.log("city" in person); // false</code>
+    </div>
+  </section>
+
+  <section class="precedence-section">
+    <h2>Operator Precedence</h2>
+    <p>Understanding operator precedence helps avoid unexpected results.</p>
+    
+    <div class="example">
+      <code>// Precedence examples</code><br>
+      <code>console.log(2 + 3 * 4); // 14 (not 20!)</code><br>
+      <code>console.log((2 + 3) * 4); // 20</code><br><br>
+      <code>// Logical operator precedence</code><br>
+      <code>console.log(true || false && false); // true</code><br>
+      <code>console.log((true || false) && false); // false</code><br><br>
+      <code>// Assignment precedence</code><br>
+      <code>let a, b;</code><br>
+      <code>a = b = 5; // Both a and b become 5</code><br>
+      <code>console.log(a, b); // 5 5</code><br><br>
+      <code>// Common precedence order (highest to lowest):</code><br>
+      <code>// 1. () [] .</code><br>
+      <code>// 2. ! typeof ++ --</code><br>
+      <code>// 3. * / %</code><br>
+      <code>// 4. + -</code><br>
+      <code>// 5. < <= > >=</code><br>
+      <code>// 6. === !==</code><br>
+      <code>// 7. &&</code><br>
+      <code>// 8. ||</code><br>
+      <code>// 9. ? :</code><br>
+      <code>// 10. = += -= *= /= %=</code>
+    </div>
+  </section>
+
+  <section>
+    <h2>Try It</h2>
+    <label>
+      Left operand
+      <input id="leftOperand" type="number" value="12" />
+    </label>
+    <label>
+      Right operand
+      <input id="rightOperand" type="number" value="5" />
+    </label>
+    <button id="evaluate">Evaluate</button>
+  </section>
+
+  <div id="results"></div>
+
+  <script src="05_operators.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Variables and Constants</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <h1>Variables and Constants - Complete Guide</h1>
+  
+  <section class="lesson-notes">
+    <h2>Teaching Notes</h2>
+    <ul class="key-points">
+      <li><code>let</code> creates block-scoped variables that you can reassign.</li>
+      <li><code>const</code> locks the binding; the reference cannot change, but objects/arrays can still mutate.</li>
+      <li><code>var</code> is function-scoped and hoisted; avoid it in modern projects to reduce bugs.</li>
+      <li>Always declare before use. Strict mode (default in modules) prevents accidental globals.</li>
+    </ul>
+    <p>
+      Discuss naming conventions (camelCase), expressing intent with meaningful names, and how temporal dead zone protects <code>let</code>/<code>const</code> declarations until they are initialized.
+    </p>
+  </section>
+
+  <section class="variables-overview">
+    <h2>Overview</h2>
+    <p>Modern JavaScript uses <code>let</code> and <code>const</code> for block-scoped variables. <code>var</code> is function-scoped and mostly kept for legacy compatibility.</p>
+  </section>
+
+  <section class="variable-types">
+    <h2>Variable Declaration Keywords</h2>
+    
+    <div class="type-section">
+      <h3>1. let - Block-Scoped Variables</h3>
+      <p><code>let</code> creates variables that are block-scoped and can be reassigned. They are not hoisted and exist in a temporal dead zone until initialization.</p>
+      <div class="example">
+        <code>let userName = "John";</code><br>
+        <code>userName = "Jane"; // ✅ Reassignment allowed</code><br>
+        <code>let age = 25;</code><br>
+        <code>age = 26; // ✅ Reassignment allowed</code><br><br>
+        <code>// Block scope example</code><br>
+        <code>if (true) {</code><br>
+        <code>&nbsp;&nbsp;let blockVar = "I'm in a block";</code><br>
+        <code>}</code><br>
+        <code>// console.log(blockVar); // ❌ ReferenceError</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>2. const - Block-Scoped Constants</h3>
+      <p><code>const</code> creates constants that cannot be reassigned. However, the contents of objects and arrays can still be modified.</p>
+      <div class="example">
+        <code>const PI = 3.14159;</code><br>
+        <code>// PI = 3.14; // ❌ TypeError: Assignment to constant variable</code><br><br>
+        <code>const person = { name: "John", age: 25 };</code><br>
+        <code>person.age = 26; // ✅ Modifying object content is allowed</code><br>
+        <code>person.city = "New York"; // ✅ Adding properties is allowed</code><br><br>
+        <code>const numbers = [1, 2, 3];</code><br>
+        <code>numbers.push(4); // ✅ Modifying array content is allowed</code><br>
+        <code>numbers[0] = 10; // ✅ Changing array elements is allowed</code>
+      </div>
+    </div>
+
+    <div class="type-section">
+      <h3>3. var - Function-Scoped Variables (Legacy)</h3>
+      <p><code>var</code> creates function-scoped variables that are hoisted. Avoid using <code>var</code> in modern JavaScript.</p>
+      <div class="example">
+        <code>var globalVar = "I'm global";</code><br>
+        <code>function example() {</code><br>
+        <code>&nbsp;&nbsp;var functionVar = "I'm function-scoped";</code><br>
+        <code>&nbsp;&nbsp;if (true) {</code><br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;var blockVar = "I'm still function-scoped";</code><br>
+        <code>&nbsp;&nbsp;}</code><br>
+        <code>&nbsp;&nbsp;// console.log(blockVar); // ✅ Works (unlike let)</code><br>
+        <code>}</code><br><br>
+        <code>// Hoisting example</code><br>
+        <code>console.log(hoistedVar); // undefined (not ReferenceError)</code><br>
+        <code>var hoistedVar = "I'm hoisted";</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="scope-section">
+    <h2>Scope and Hoisting</h2>
+    
+    <div class="scope-examples">
+      <h3>Block Scope vs Function Scope</h3>
+      <div class="example">
+        <code>// Block scope (let/const)</code><br>
+        <code>if (true) {</code><br>
+        <code>&nbsp;&nbsp;let blockScoped = "I'm block-scoped";</code><br>
+        <code>&nbsp;&nbsp;const alsoBlockScoped = "Me too";</code><br>
+        <code>}</code><br>
+        <code>// console.log(blockScoped); // ❌ ReferenceError</code><br><br>
+        <code>// Function scope (var)</code><br>
+        <code>function myFunction() {</code><br>
+        <code>&nbsp;&nbsp;if (true) {</code><br>
+        <code>&nbsp;&nbsp;&nbsp;&nbsp;var functionScoped = "I'm function-scoped";</code><br>
+        <code>&nbsp;&nbsp;}</code><br>
+        <code>&nbsp;&nbsp;// console.log(functionScoped); // ✅ Works</code><br>
+        <code>}</code>
+      </div>
+
+      <h3>Temporal Dead Zone</h3>
+      <div class="example">
+        <code>// Temporal Dead Zone example</code><br>
+        <code>console.log(typeof myVar); // "undefined" (var is hoisted)</code><br>
+        <code>console.log(typeof myLet); // ReferenceError (let is not accessible)</code><br><br>
+        <code>var myVar = "I'm hoisted";</code><br>
+        <code>let myLet = "I'm in TDZ until this line";</code>
+      </div>
+
+      <h3>Global Scope</h3>
+      <div class="example">
+        <code>// Global variables</code><br>
+        <code>let globalLet = "I'm global";</code><br>
+        <code>const globalConst = "I'm also global";</code><br>
+        <code>var globalVar = "I'm global too";</code><br><br>
+        <code>// All are accessible from anywhere in the script</code><br>
+        <code>function anyFunction() {</code><br>
+        <code>&nbsp;&nbsp;console.log(globalLet, globalConst, globalVar);</code><br>
+        <code>}</code>
+      </div>
+    </div>
+  </section>
+
+  <section class="best-practices">
+    <h2>Best Practices</h2>
+    
+    <div class="practice-section">
+      <h3>Naming Conventions</h3>
+      <div class="example">
+        <code>// Use camelCase for variables</code><br>
+        <code>let userName = "john_doe";</code><br>
+        <code>let userAge = 25;</code><br>
+        <code>let isUserActive = true;</code><br><br>
+        <code>// Use UPPER_CASE for constants</code><br>
+        <code>const MAX_USERS = 100;</code><br>
+        <code>const API_BASE_URL = "https://api.example.com";</code><br><br>
+        <code>// Use descriptive names</code><br>
+        <code>let userCount = 0; // ✅ Good</code><br>
+        <code>let x = 0; // ❌ Too vague</code>
+      </div>
+
+      <h3>Declaration Guidelines</h3>
+      <div class="example">
+        <code>// ✅ Prefer const by default</code><br>
+        <code>const userName = "John";</code><br>
+        <code>const userPreferences = { theme: "dark" };</code><br><br>
+        <code>// ✅ Use let only when reassignment is needed</code><br>
+        <code>let counter = 0;</code><br>
+        <code>counter++; // Reassignment needed</code><br><br>
+        <code>// ❌ Avoid var in modern code</code><br>
+        <code>// var oldStyle = "Don't use this";</code><br><br>
+        <code>// ✅ Declare variables close to where they're used</code><br>
+        <code>function processUser(user) {</code><br>
+        <code>&nbsp;&nbsp;const processedData = transformUser(user);</code><br>
+        <code>&nbsp;&nbsp;return processedData;</code><br>
+        <code>}</code>
+      </div>
+    </div>
+  </section>
+
+  <table>
+    <thead>
+      <tr><th>Keyword</th><th>Scope</th><th>Reassignable?</th><th>Redeclarable?</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>let</code></td><td>Block</td><td>Yes</td><td>No</td></tr>
+      <tr><td><code>const</code></td><td>Block</td><td>No</td><td>No</td></tr>
+      <tr><td><code>var</code></td><td>Function</td><td>Yes</td><td>Yes</td></tr>
+    </tbody>
+  </table>
+
+  <button id="runScopeDemo">Run Scope Demo</button>
+  <div id="scopeOutput" aria-live="polite"></div>
+
+  <script src="03_variables_constants.js" defer></script>
+</body>
+</html>
