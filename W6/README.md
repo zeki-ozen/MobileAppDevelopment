@@ -13,6 +13,8 @@ Markdown content set prepared to accompany a React Native lesson that builds on 
 - [components/TouchableOpacity.md](components/TouchableOpacity.md)
 - [components/SafeAreaView.md](components/SafeAreaView.md)
 - [components/Picker.md](components/Picker.md)
+- [components/RadioButton.md](components/RadioButton.md)
+- [components/Checkbox.md](components/Checkbox.md)
 - [StudentExercise.md](StudentExercise.md)
 
 ## Usage Tips
