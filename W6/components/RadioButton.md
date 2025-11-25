@@ -1,23 +1,23 @@
 # RadioButton
 
 ## Overview
-React Native çekirdeğinde hazır bir Radio Button bulunmadığı için Expo projelerinde ya `Pressable` ile özel bir bileşen yazılır ya da `react-native-paper`, `@rneui/themed` gibi tasarım kütüphanelerine başvurulur. Özel bileşen yaklaşımı, uygulamanızın tipografisine ve renk paletine uygun sade daireler üretmenizi sağlar. Radio Button tek seçimli formlar, ders parçası seçimleri veya tema değiştirme gibi durumlar için idealdir.
+Because React Native core no longer ships a ready-made radio control, Expo projects typically implement one with `Pressable` or rely on UI kits such as `react-native-paper` or `@rneui/themed`. Building your own component keeps the look aligned with your typography and color system. Radio buttons shine in single-choice forms, picking a lesson track, or flipping app themes.
 
-## Notable Props (özel bileşen için)
-- `value`: Radio grubundaki benzersiz değeri temsil eder.
-- `isSelected`: Kontrolün işaretli olup olmadığını belirler.
-- `label`: Kullanıcıya gösterilecek metin.
-- `onPress(value)`: Seçim değiştiğinde tetiklenen geri çağırım.
-- `disabled`: Etkileşimi devre dışı bırakır; tipik olarak önkoşullar sağlanmadığında kullanılır.
-- `size`, `activeColor`, `inactiveColor`: Görsel tutarlılık için sık kullanılan stil prop'ları.
+## Notable Props (custom component)
+- `value`: Unique identifier inside the radio group.
+- `isSelected`: Boolean flag for the active option.
+- `label`: Text that appears next to the control.
+- `onPress(value)`: Callback fired when selection changes.
+- `disabled`: Turns interaction off when prerequisites are missing.
+- `size`, `activeColor`, `inactiveColor`: Common style props to keep visuals consistent.
 
 ## Key Events
-- `onPress`: Pressable veya TouchableOpacity üzerinden gelir; yeni değeri state'e yazmak için kullanılır.
-- `onAccessibilityTap`: Erişilebilirlik modunda seçimi değiştirir; `accessibilityRole="radio"` ile eşleştirilmelidir.
+- `onPress`: Delivered through Pressable/TouchableOpacity to commit the new value to state.
+- `onAccessibilityTap`: Updates selection in accessibility mode; pair with `accessibilityRole="radio"`.
 
 ## Examples
 
-### Example 1: Modül Seçimi
+### Example 1: Module Selection
 ```jsx
 import { useState } from 'react';
 import { SafeAreaView, View, Text, Pressable } from 'react-native';
@@ -68,7 +68,7 @@ export default function ModuleSelector() {
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#0f172a', padding: 24 }}>
-      <Text style={{ color: '#94a3b8' }}>Aktif modül</Text>
+      <Text style={{ color: '#94a3b8' }}>Active Module</Text>
       <Text style={{ color: '#e2e8f0', fontSize: 22, fontWeight: '700', marginBottom: 16 }}>
         {MODULES.find((item) => item.id === value)?.title}
       </Text>
@@ -86,7 +86,7 @@ export default function ModuleSelector() {
 }
 ```
 
-### Example 2: FlatList Tabanlı Oturum Seçici
+### Example 2: FlatList-powered Track Picker
 ```jsx
 import { useState } from 'react';
 import { SafeAreaView, FlatList, View, Text, Pressable } from 'react-native';
@@ -158,7 +158,7 @@ export default function TrackSelector() {
 ```
 
 ## Tips
-- Radio grubu için `accessibilityRole="radiogroup"` değerini kapsayıcı View'da kullanmak, screen reader deneyimini iyileştirir.
-- `useCallback` ile `onPress` fonksiyonlarını sarmak yeniden render maliyetini düşürür.
-- Çok sayıda seçenek varsa Radio Button yerine Picker kullanmayı düşünün; aksi halde ekran kalabalıklaşır.
-- Tasarımı hızlandırmak için `react-native-paper` veya `native-base` gibi bileşen kütüphanelerinden hazır RadioButton bileşenleri kullanabilirsiniz.
+- Use `accessibilityRole="radiogroup"` on the wrapping View so screen readers announce the set correctly.
+- Wrap `onPress` handlers with `useCallback` when radios live inside large lists to avoid re-renders.
+- If the option list grows too long, switch to Picker or a modal sheet to reduce clutter.
+- UI kits such as `react-native-paper` or `native-base` provide drop-in radio buttons when speed matters more than custom visuals.
