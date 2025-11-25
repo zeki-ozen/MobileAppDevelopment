@@ -12,6 +12,8 @@ Markdown content set prepared to accompany a React Native lesson that builds on 
 - [components/FlatList.md](components/FlatList.md)
 - [components/TouchableOpacity.md](components/TouchableOpacity.md)
 - [components/SafeAreaView.md](components/SafeAreaView.md)
+- [components/Picker.md](components/Picker.md)
+- [StudentExercise.md](StudentExercise.md)
 
 ## Usage Tips
 - When building dedicated example screens for each component inside `app.js`, start from the code snippets in these notes.
