@@ -139,3 +139,185 @@ export default function SessionDraft() {
   );
 }
 ```
+
+## Example 3: Complete User Management with MMKV
+A React Native application using Expo and react-native-mmkv library for simple user management.
+
+```jsx
+// UserManagement.js
+import React, { useState } from "react";
+import { View, Text, TextInput, Button, StyleSheet, Alert, Picker } from "react-native";
+import { MMKV } from "react-native-mmkv";
+
+// Creating MMKV instance
+const storage = new MMKV();
+
+const App = () => {
+  const [userId, setUserId] = useState("");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [gender, setGender] = useState("Male");
+  const [age, setAge] = useState("");
+  const [result, setResult] = useState(null);
+  const [notification, setNotification] = useState(null);
+
+  const saveUser = () => {
+    if (!userId || !name || !surname || !age || isNaN(parseInt(age))) {
+      Alert.alert("Error", "Please fill all fields correctly.");
+      return;
+    }
+
+    const user = {
+      userId,
+      name,
+      surname,
+      gender,
+      age: parseInt(age),
+    };
+
+    try {
+      storage.set(userId, JSON.stringify(user));
+      setNotification("User saved successfully!");
+      setTimeout(() => setNotification(null), 3000);
+      // Clear fields
+      setUserId("");
+      setName("");
+      setSurname("");
+      setGender("Male");
+      setAge("");
+    } catch (error) {
+      Alert.alert("Error", "An error occurred while saving user.");
+    }
+  };
+
+  const getUser = () => {
+    if (!userId) {
+      Alert.alert("Error", "Please enter user ID.");
+      return;
+    }
+
+    try {
+      const userString = storage.getString(userId);
+      if (userString) {
+        setResult(JSON.parse(userString));
+      } else {
+        Alert.alert("Error", "User not found.");
+        setResult(null);
+      }
+    } catch (error) {
+      Alert.alert("Error", "An error occurred while fetching user.");
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      {notification && <Text style={styles.notification}>{notification}</Text>}
+
+      <Text style={styles.label}>User ID</Text>
+      <TextInput
+        style={styles.input}
+        value={userId}
+        onChangeText={setUserId}
+        placeholder="User ID"
+      />
+
+      <Text style={styles.label}>Name</Text>
+      <TextInput
+        style={styles.input}
+        value={name}
+        onChangeText={setName}
+        placeholder="Name"
+      />
+
+      <Text style={styles.label}>Surname</Text>
+      <TextInput
+        style={styles.input}
+        value={surname}
+        onChangeText={setSurname}
+        placeholder="Surname"
+      />
+
+      <Text style={styles.label}>Gender</Text>
+      <Picker
+        selectedValue={gender}
+        onValueChange={(itemValue) => setGender(itemValue)}
+        style={styles.picker}
+      >
+        <Picker.Item label="Male" value="Male" />
+        <Picker.Item label="Female" value="Female" />
+      </Picker>
+
+      <Text style={styles.label}>Age</Text>
+      <TextInput
+        style={styles.input}
+        value={age}
+        onChangeText={setAge}
+        placeholder="Age"
+        keyboardType="numeric"
+      />
+
+      <View style={styles.buttonContainer}>
+        <Button title="Save" onPress={saveUser} />
+        <Button title="Get" onPress={getUser} />
+      </View>
+
+      {result && (
+        <View style={styles.resultContainer}>
+          <Text style={styles.resultText}>Name: {result.name}</Text>
+          <Text style={styles.resultText}>Surname: {result.surname}</Text>
+          <Text style={styles.resultText}>Gender: {result.gender}</Text>
+          <Text style={styles.resultText}>Age: {result.age}</Text>
+        </View>
+      )}
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#fff",
+  },
+  label: {
+    fontSize: 16,
+    fontWeight: "bold",
+    marginBottom: 5,
+  },
+  input: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    padding: 10,
+    marginBottom: 15,
+  },
+  picker: {
+    borderWidth: 1,
+    borderColor: "#ccc",
+    borderRadius: 5,
+    marginBottom: 15,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 20,
+  },
+  resultContainer: {
+    marginTop: 20,
+  },
+  resultText: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  notification: {
+    backgroundColor: "#d4edda",
+    color: "#155724",
+    padding: 10,
+    borderRadius: 5,
+    marginBottom: 15,
+    textAlign: "center",
+  },
+});
+
+export default App;
+```
