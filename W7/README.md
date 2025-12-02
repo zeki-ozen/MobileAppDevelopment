@@ -3,12 +3,11 @@
 Notes focusing on data storage, synchronization, and offline working needs in the React Native course. Each file first summarizes the relevant approach, then shows how you can use it with an Expo + Express based REST API through two examples.
 
 ## File Structure
-- [storage/AsyncStorage.md](storage/AsyncStorage.md)
-- [storage/SQLite.md](storage/SQLite.md)
-- [storage/Realm.md](storage/Realm.md)
-- [storage/MMKV.md](storage/MMKV.md)
-- [storage/MySQL.md](storage/MySQL.md)
-- English versions: [storage/en/AsyncStorage.md](storage/en/AsyncStorage.md), [storage/en/SQLite.md](storage/en/SQLite.md), [storage/en/Realm.md](storage/en/Realm.md), [storage/en/MMKV.md](storage/en/MMKV.md), [storage/en/MySQL.md](storage/en/MySQL.md)
+- [storage/AsyncStorage.md](AsyncStorage.md)
+- [storage/SQLite.md](SQLite.md)
+- [storage/Realm.md](Realm.md)
+- [storage/MMKV.md](MMKV.md)
+- [storage/MySQL.md](MySQL.md)
 
 ## Usage Recommendations
 - The codes in the notes are kept simple to work exactly with Expo's `Blank (JavaScript)` template. On the backend side, you can quickly set up a mini REST API using the `express` package.
