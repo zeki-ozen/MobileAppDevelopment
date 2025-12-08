@@ -4,7 +4,7 @@
 
 In this course, **instead of a written final exam**, students are expected to develop a mobile application on a **self-chosen topic** and present it in class.
 
-Each student / group should develop a mobile app that:
+Each student should develop a mobile app that:
 
 - Aims to solve a real problem or address a concrete need,
 - Is in a runnable state,
@@ -15,7 +15,7 @@ Each student / group should develop a mobile app that:
 
 ## 2. Deliverables
 
-Each student / group must submit:
+Each student must submit:
 
 1. **Git repository link**
    - Either public or private with access granted to the instructor.
@@ -158,19 +158,17 @@ The following items are **not mandatory**, but if present they add extra value a
 
 ## 7. Academic Integrity & Originality Statement
 
-Within the scope of this project, each student/group is assumed to **accept and declare** the following:
+Within the scope of this project, each student is assumed to **accept and declare** the following:
 
-- The project is **not a ready-made project belonging to another person or institution**; it has been developed entirely by the student/group.
+- The project is **not a ready-made project belonging to another person or institution**; it has been developed entirely by the student.
 - The project has **not** been outsourced to a third party (paid or unpaid), an agency, or a freelance developer.
 - A substantial portion of the code and content does **not**:
   - Come from another student’s project, or
   - Consist of directly copied repositories from the internet (fork/clone + minor edits).  
   If tutorials or example projects are used, relevant **sources must be cited in the README**.
-- The project is **not** fully or largely produced as a one-click output of:
-  - Automated code generation tools, or
-  - Text/code-generating AI systems.  
-  The student is expected to **understand and be able to explain** their own code.
-- During and/or after the presentation, each student/group member:
+
+  * The student is expected to **understand and be able to explain** their own code.
+- During and/or after the presentation, each student:
   - Should be able to answer questions about their own code and architecture.
 
 **IMPORTANT:**
@@ -184,7 +182,7 @@ Within the scope of this project, each student/group is assumed to **accept and 
 
 The aim of this final project is not only to submit a working application but also to:
 
-- Experience the end-to-end mobile app development process,
+- Experience the mobile app development process,
 - Apply Git and basic project management practices,
 - Think in a user-centric way (UI/UX),
 - Make architectural and data management decisions, even at a basic level.
