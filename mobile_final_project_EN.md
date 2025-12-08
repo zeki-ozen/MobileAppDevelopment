@@ -11,8 +11,6 @@ Each student / group should develop a mobile app that:
 - Has its code under version control (Git),
 - Includes a basic but meaningful user interface (UI).
 
-> **Note:** The choice of technology is flexible (e.g., Android (Kotlin/Java), iOS (Swift), Flutter, React Native, etc.). However, the selected tech stack and architecture will be taken into account in the evaluation.
-
 ---
 
 ## 2. Deliverables
