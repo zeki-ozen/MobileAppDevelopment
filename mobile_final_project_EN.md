@@ -173,11 +173,10 @@ Within the scope of this project, each student/group is assumed to **accept and 
 - During and/or after the presentation, each student/group member:
   - Should be able to answer questions about their own code and architecture.
 
-**Suggested statement (can be added to the end of the README):**
+**IMPORTANT:**
 
-> “The code, design, and content in this project have been developed by me/us. The project has not been outsourced to others and is not a copy of another student’s work or an existing project. All external resources used (libraries, tutorials, sample code, etc.) are listed in the README file.”
+> “The code cannot be forked other repos or someone's project. Your idea may not be original, but your codes have to be original.”
 
-The instructor may, when necessary, perform code reviews and oral Q&A to verify project ownership and the level of individual contribution.
 
 ---
 
